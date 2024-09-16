@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import hrishithImage from '../hrishith.jpeg';
@@ -42,12 +42,64 @@ const Subtitle = styled(motion.h2)`
   color: #555;
 `;
 
-const Description = styled(motion.p)`
+const TypewriterWrapper = styled.p`
   font-size: 1.1rem;
   max-width: 600px;
   margin: 0 auto 1.5rem;
   color: #444;
+  min-height: 6em;
+  position: relative;
+  text-align: left;
 `;
+
+const Cursor = styled.span`
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background-color: #444;
+  margin-left: 2px;
+  animation: blink 0.7s infinite;
+  vertical-align: text-bottom;
+  
+  @keyframes blink {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+`;
+
+const useTypewriter = (text, speed = 30) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  useEffect(() => {
+    let i = 0;
+    const typingInterval = setInterval(() => {
+      if (i < text.length) {
+        setDisplayedText(prev => prev + text.charAt(i));
+        i++;
+      } else {
+        clearInterval(typingInterval);
+        setIsTypingComplete(true);
+      }
+    }, speed);
+
+    return () => clearInterval(typingInterval);
+  }, [text, speed]);
+
+  return { displayedText, isTypingComplete };
+};
+
+const TypewriterText = ({ children, speed }) => {
+  const { displayedText, isTypingComplete } = useTypewriter(children, speed);
+
+  return (
+    <TypewriterWrapper>
+      {displayedText}
+      {!isTypingComplete && <Cursor />}
+    </TypewriterWrapper>
+  );
+};
 
 function Home() {
   return (
@@ -82,14 +134,9 @@ function Home() {
         >
           Computer Science Graduate Student | Software Developer | Cybersecurity
         </Subtitle>
-        <Description
-          initial={{ y: -10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-        >
-          Welcome to my portfolio! I'm passionate about leveraging technology to solve real-world problems, with a focus on cybersecurity, data science, and full-stack development. Explore my projects and experiences to learn more about my journey in the world of computer science.
-        </Description>
-      
+        <TypewriterText speed={20}>
+          Weelcome to my portfolio! I'm passionate about leveraging technology to solve real-world problems, with a focus on cybersecurity, data science, and full-stack development. Explore my projects and experiences to learn more about my journey in the world of computer science.
+        </TypewriterText>
       </ContentWrapper>
     </HomeContainer>
   );
