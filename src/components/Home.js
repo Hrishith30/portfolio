@@ -54,11 +54,11 @@ const TypewriterWrapper = styled.p`
 
 const Cursor = styled.span`
   display: inline-block;
-  width: 2px;
-  height: 1.2em;
+  width: 1.2px;
+  height: 1.1em;
   background-color: #444;
   margin-left: 2px;
-  animation: blink 0.7s infinite;
+  animation: blink 1s infinite;
   vertical-align: text-bottom;
   
   @keyframes blink {
@@ -91,12 +91,12 @@ const useTypewriter = (text, speed = 30) => {
 };
 
 const TypewriterText = ({ children, speed }) => {
-  const { displayedText, isTypingComplete } = useTypewriter(children, speed);
+  const { displayedText } = useTypewriter(children, speed);
 
   return (
     <TypewriterWrapper>
       {displayedText}
-      {!isTypingComplete && <Cursor />}
+      <Cursor />
     </TypewriterWrapper>
   );
 };
