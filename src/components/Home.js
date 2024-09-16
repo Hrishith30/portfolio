@@ -80,7 +80,7 @@ function Home() {
           animate={{ y: 0 }}
           transition={{ delay: 0.5, type: 'spring', stiffness: 90 }}
         >
-          Computer Science Graduate Student | Cybersecurity Enthusiast | Software Developer
+          Computer Science Graduate Student | Software Developer | Cybersecurity
         </Subtitle>
         <Description
           initial={{ y: -10, opacity: 0 }}
