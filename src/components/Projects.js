@@ -73,42 +73,6 @@ const ProjectDescription = styled(motion.div)`
 
 const projects = [
   {
-    title: "Data Analysis and Chatbot Development for Business Insights",
-    date: "Jun 2021 – Dec 2021",
-    description: "Conducted data analysis using Linear Discriminant Analysis and Hierarchical Clustering to generate actionable business insights as a Data Science Intern at Personifwy. Developed interactive chatbots using NLP technologies like NLTK and BABI-META, including a hospital chatbot built on Google Dialogflow to streamline patient interactions and improve information retrieval.",
-    icon: FaRobot
-  },
-  {
-    title: "Cybersecurity Vulnerability Assessment and Mitigation",
-    date: "Jan 2022 – May 2022",
-    description: "Conducted comprehensive security breach assessments to identify system vulnerabilities as a Cyber Security Analyst Intern at Supraja Technologies. Developed custom scripts to address specific threats, and performed penetration testing to evaluate system defenses. Generated detailed vulnerability reports for clients, providing recommendations for mitigation and strengthening overall organizational cybersecurity.",
-    icon: FaLock
-  },
-  {
-    title: "Web Application Security Enhancement using Penetration Testing",
-    date: "Jun 2022 – Nov 2022",
-    description: "Performed Web Application Penetration Testing (WAPT) and bug hunting to uncover and report critical security vulnerabilities as an Ethical Hacker Intern at Supraja Technologies. Conducted detailed security assessments for various platforms, offering actionable insights to clients for enhancing security measures and vulnerability resolution.",
-    icon: FaCode
-  },
-  {
-    title: "Smart Attendance System Using Facial Recognition",
-    date: "Oct 2022",
-    description: "Developed an automated system to streamline attendance-taking using facial recognition technology. Integrated camera inputs with face detection algorithms for accurate identification and recorded attendance in an Excel format, reducing manual entry and improving accuracy.",
-    icon: FaCamera
-  },
-  {
-    title: "Home Appliance Control via Social Media",
-    date: "Dec 2022",
-    description: "Engineered a system using Raspberry Pi to remotely control home appliances through web-based commands or TeleBot. This solution enabled automated status updates and remote monitoring, allowing users to manage appliances from a distance, achieving energy savings by controlling devices remotely.",
-    icon: FaMobileAlt
-  },
-  {
-    title: "Full-Stack Web Development for E-Commerce Platform",
-    date: "Nov 2022 – Mar 2023",
-    description: "Contributed to full-stack development projects with a focus on E-Commerce platforms as a Software Developer Intern at Raise Digital. Developed backend services using Flask and MySQL, and integrated deep learning features into APIs to enhance platform performance. Led the creation of an Online Job Search Platform, focusing on web architecture, real-time database integration, and user experience design.",
-    icon: FaShoppingCart
-  },
-  {
     title: "Image Classification on CIFAR-10 using CNN",
     date: "Jan 2023",
     description: "Designed and implemented a Convolutional Neural Network (CNN) for classifying images in the CIFAR-10 dataset, achieving 91% accuracy. Enhanced the architecture by integrating DenseNet, improving overall performance. Conducted extensive testing on depixelated images to assess robustness and visualized results with detailed metrics.",
@@ -125,6 +89,42 @@ const projects = [
     date: "Jan 2023",
     description: "Built a system to detect and defend against Distributed Denial-of-Service (DDoS) attacks in power grids. Trained neural networks for Phasor Measurement Units (PMUs) and created knowledge graphs to enhance responses during future attacks. Utilized AWS SageMaker to manage PMU datasets and optimize cyber defense strategies for smart grids.",
     icon: FaBolt
+  },
+  {
+    title: "Full-Stack Web Development for E-Commerce Platform",
+    date: "Nov 2022 – Mar 2023",
+    description: "Contributed to full-stack development projects with a focus on E-Commerce platforms as a Software Developer Intern at Raise Digital. Developed backend services using Flask and MySQL, and integrated deep learning features into APIs to enhance platform performance. Led the creation of an Online Job Search Platform, focusing on web architecture, real-time database integration, and user experience design.",
+    icon: FaShoppingCart
+  },
+  {
+    title: "Home Appliance Control via Social Media",
+    date: "Dec 2022",
+    description: "Engineered a system using Raspberry Pi to remotely control home appliances through web-based commands or TeleBot. This solution enabled automated status updates and remote monitoring, allowing users to manage appliances from a distance, achieving energy savings by controlling devices remotely.",
+    icon: FaMobileAlt
+  },
+  {
+    title: "Smart Attendance System Using Facial Recognition",
+    date: "Oct 2022",
+    description: "Developed an automated system to streamline attendance-taking using facial recognition technology. Integrated camera inputs with face detection algorithms for accurate identification and recorded attendance in an Excel format, reducing manual entry and improving accuracy.",
+    icon: FaCamera
+  },
+  {
+    title: "Web Application Security Enhancement using Penetration Testing",
+    date: "Jun 2022 – Nov 2022",
+    description: "Performed Web Application Penetration Testing (WAPT) and bug hunting to uncover and report critical security vulnerabilities as an Ethical Hacker Intern at Supraja Technologies. Conducted detailed security assessments for various platforms, offering actionable insights to clients for enhancing security measures and vulnerability resolution.",
+    icon: FaCode
+  },
+  {
+    title: "Cybersecurity Vulnerability Assessment and Mitigation",
+    date: "Jan 2022 – May 2022",
+    description: "Conducted comprehensive security breach assessments to identify system vulnerabilities as a Cyber Security Analyst Intern at Supraja Technologies. Developed custom scripts to address specific threats, and performed penetration testing to evaluate system defenses. Generated detailed vulnerability reports for clients, providing recommendations for mitigation and strengthening overall organizational cybersecurity.",
+    icon: FaLock
+  },
+  {
+    title: "Data Analysis and Chatbot Development for Business Insights",
+    date: "Jun 2021 – Dec 2021",
+    description: "Conducted data analysis using Linear Discriminant Analysis and Hierarchical Clustering to generate actionable business insights as a Data Science Intern at Personifwy. Developed interactive chatbots using NLP technologies like NLTK and BABI-META, including a hospital chatbot built on Google Dialogflow to streamline patient interactions and improve information retrieval.",
+    icon: FaRobot
   }
 ];
 

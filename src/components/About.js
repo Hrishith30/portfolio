@@ -1,8 +1,34 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCode, faBriefcase, faLightbulb, faBook, faRocket } from '@fortawesome/free-solid-svg-icons';
+
+const Section = ({ icon, title, content }) => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  return (
+    <motion.div 
+      ref={ref}
+      className="about-section" 
+      variants={sectionVariants} 
+      initial="hidden" 
+      animate={isInView ? "visible" : "hidden"}
+    >
+      <div className="icon-container">
+        <FontAwesomeIcon icon={icon} className="section-icon" />
+      </div>
+      <h2>{title}</h2>
+      {content}
+    </motion.div>
+  );
+};
 
 const About = () => {
   const experienceItems = [
@@ -24,28 +50,6 @@ const About = () => {
     { title: "Smart Home Appliances Operations Design by IoT Devices", description: "IJRASET Journal (Volume 11, Issue VI)" }
   ];
 
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-    hover: { scale: 1.05, transition: { duration: 0.3 } }
-  };
-
-  const renderSection = (icon, title, content) => (
-    <motion.div 
-      className="about-section" 
-      variants={sectionVariants} 
-      initial="hidden" 
-      animate="visible"
-      whileHover="hover"
-    >
-      <div className="icon-container">
-        <FontAwesomeIcon icon={icon} className="section-icon" />
-      </div>
-      <h2>{title}</h2>
-      {content}
-    </motion.div>
-  );
-
   return (
     <ParallaxProvider>
       <div className="about-container">
@@ -54,50 +58,62 @@ const About = () => {
         </Parallax>
 
         <div className="sections-container">
-          {renderSection(faUser, "Hrishith Raj Reddy Malgireddy", 
-            <>
-              <h3>Cybersecurity Analyst | Software Developer | Data Scientist</h3>
-              <p>Passionate computer science professional pursuing an MS in Computer Science at the University of Missouri, Columbia. Focused on cybersecurity, data science, and full-stack development, with a drive to solve real-world problems through innovative technology solutions.</p>
-            </>
-          )}
+          <Section icon={faUser} title="Hrishith Raj Reddy Malgireddy" 
+            content={
+              <>
+                <h3>Cybersecurity Analyst | Software Developer | Data Scientist</h3>
+                <p>Passionate computer science professional pursuing an MS in Computer Science at the University of Missouri, Columbia. Focused on cybersecurity, data science, and full-stack development, with a drive to solve real-world problems through innovative technology solutions.</p>
+              </>
+            }
+          />
 
-          {renderSection(faCode, "Skills & Expertise", 
-            <p>Proficient in C, C++, Python, MySQL, PHP, Java, and JavaScript. Experienced with TensorFlow, PyTorch, Flask, AWS, and ReactJS. Advanced knowledge in cybersecurity, data analysis, and full-stack development. Comfortable working across Windows, Linux, and Mac environments.</p>
-          )}
+          <Section icon={faCode} title="Skills & Expertise" 
+            content={
+              <p>Proficient in C, C++, Python, MySQL, PHP, Java, and JavaScript. Experienced with TensorFlow, PyTorch, Flask, NodeJS, AWS, and ReactJS. Advanced knowledge in cybersecurity, data analysis, and full-stack development. Comfortable working across Windows, Linux, and Mac environments.</p>
+            }
+          />
 
-          {renderSection(faBriefcase, "Professional Experience", 
-            <ul>
-              {experienceItems.map((item, index) => (
-                <li key={index}>
-                  <strong>{item.title}:</strong> {item.description}
-                </li>
-              ))}
-            </ul>
-          )}
+          <Section icon={faBriefcase} title="Professional Experience" 
+            content={
+              <ul>
+                {experienceItems.map((item, index) => (
+                  <li key={index}>
+                    <strong>{item.title}:</strong> {item.description}
+                  </li>
+                ))}
+              </ul>
+            }
+          />
 
-          {renderSection(faLightbulb, "Key Projects", 
-            <ul>
-              {projectItems.map((item, index) => (
-                <li key={index}>
-                  <strong>{item.title}:</strong> {item.description}
-                </li>
-              ))}
-            </ul>
-          )}
+          <Section icon={faLightbulb} title="Key Projects" 
+            content={
+              <ul>
+                {projectItems.map((item, index) => (
+                  <li key={index}>
+                    <strong>{item.title}:</strong> {item.description}
+                  </li>
+                ))}
+              </ul>
+            }
+          />
 
-          {renderSection(faBook, "Publications", 
-            <ul>
-              {publicationItems.map((item, index) => (
-                <li key={index}>
-                  <strong>{item.title}:</strong> {item.description}
-                </li>
-              ))}
-            </ul>
-          )}
+          <Section icon={faBook} title="Publications" 
+            content={
+              <ul>
+                {publicationItems.map((item, index) => (
+                  <li key={index}>
+                    <strong>{item.title}:</strong> {item.description}
+                  </li>
+                ))}
+              </ul>
+            }
+          />
 
-          {renderSection(faRocket, "Looking Ahead", 
-            <p>Constantly seeking opportunities to innovate and apply my knowledge in cybersecurity, data science, and software development to create impactful solutions. With a strong foundation in computer science, a commitment to continuous learning, and a drive for excellence, I am ready to contribute to challenging and transformative projects.</p>
-          )}
+          <Section icon={faRocket} title="Looking Ahead" 
+            content={
+              <p>Constantly seeking opportunities to innovate and apply my knowledge in cybersecurity, data science, and software development to create impactful solutions. With a strong foundation in computer science, a commitment to continuous learning, and a drive for excellence, I am ready to contribute to challenging and transformative projects.</p>
+            }
+          />
         </div>
       </div>
     </ParallaxProvider>
@@ -116,6 +132,7 @@ const styles = `
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
+    transition: all 0.3s ease-in-out;
   }
 
   .about-header {
@@ -125,21 +142,28 @@ const styles = `
     margin-bottom: 20px;
     position: relative;
     z-index: 2;
+    transition: all 0.3s ease-in-out;
   }
 
   .sections-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    transition: all 0.3s ease-in-out;
   }
 
   .about-section {
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
     padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .about-section:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-7px);
   }
 
   .icon-container {
@@ -152,6 +176,7 @@ const styles = `
     align-items: center;
     margin: 0 auto 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
   }
 
   .section-icon {
@@ -188,12 +213,25 @@ const styles = `
   }
 
   @media (max-width: 768px) {
+    .about-container {
+      padding: 10px;
+    }
+
     .about-header {
       font-size: 2rem;
     }
 
     .about-section {
-      padding: 20px;
+      padding: 15px;
+    }
+
+    .icon-container {
+      width: 50px;
+      height: 50px;
+    }
+
+    .section-icon {
+      font-size: 1.5rem;
     }
 
     h2 {
@@ -206,6 +244,32 @@ const styles = `
 
     p, ul {
       font-size: 0.9rem;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-header {
+      font-size: 1.8rem;
+    }
+
+    .about-section {
+      padding: 12px;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    p, ul {
+      font-size: 0.85rem;
     }
   }
 `;

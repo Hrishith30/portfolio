@@ -10,57 +10,84 @@ const HomeContainer = styled(motion.div)`
   justify-content: center;
   min-height: 100vh;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 1rem;
   background-color: #ffffff;
+  
+  @media (min-width: 768px) {
+    padding: 2rem 4rem;
+  }
 `;
 
 const ContentWrapper = styled(motion.div)`
   background-color: #ffffff;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
   max-width: 800px;
   width: 100%;
+  
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 const ProfileImage = styled(motion.img)`
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 2rem;
+  
+  @media (min-width: 768px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 const Title = styled(motion.h1)`
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
   color: #333;
+  
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const Subtitle = styled(motion.h2)`
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   margin-bottom: 1.5rem;
   color: #555;
+  
+  @media (min-width: 768px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const TypewriterWrapper = styled.p`
-  font-size: 1.1rem;
+  font-size: 1rem;
   max-width: 600px;
   margin: 0 auto 1.5rem;
   color: #444;
   min-height: 6em;
   position: relative;
   text-align: center;
+  
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const Cursor = styled.span`
   display: inline-block;
-  width: 1.2px;
+  width: 1px;
   height: 1.1em;
   background-color: #444;
   margin-left: 2px;
   animation: blink 1s infinite;
   vertical-align: text-bottom;
+  position: relative;
+  top: -0.1em;
   
   @keyframes blink {
     0% { opacity: 0; }
