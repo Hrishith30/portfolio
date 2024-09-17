@@ -68,30 +68,34 @@ const Cursor = styled.span`
   }
 `;
 
-const useTypewriter = (text, speed = 30) => {
+const useTypewriter = (text, speed = 30, delay = 0) => {
   const [displayedText, setDisplayedText] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   useEffect(() => {
-    let i = 0;
-    const typingInterval = setInterval(() => {
-      if (i < text.length) {
-        setDisplayedText(prev => prev + text.charAt(i));
-        i++;
-      } else {
-        clearInterval(typingInterval);
-        setIsTypingComplete(true);
-      }
-    }, speed);
+    const delayTimeout = setTimeout(() => {
+      let i = 0;
+      const typingInterval = setInterval(() => {
+        if (i < text.length) {
+          setDisplayedText(prev => prev + text.charAt(i));
+          i++;
+        } else {
+          clearInterval(typingInterval);
+          setIsTypingComplete(true);
+        }
+      }, speed);
 
-    return () => clearInterval(typingInterval);
-  }, [text, speed]);
+      return () => clearInterval(typingInterval);
+    }, delay);
+
+    return () => clearTimeout(delayTimeout);
+  }, [text, speed, delay]);
 
   return { displayedText, isTypingComplete };
 };
 
-const TypewriterText = ({ children, speed }) => {
-  const { displayedText } = useTypewriter(children, speed);
+const TypewriterText = ({ children, speed, delay }) => {
+  const { displayedText } = useTypewriter(children, speed, delay);
 
   return (
     <TypewriterWrapper>
@@ -134,7 +138,7 @@ function Home() {
         >
           Computer Science Graduate Student | Software Developer | Cybersecurity
         </Subtitle>
-        <TypewriterText speed={20}>
+        <TypewriterText speed={20} delay={700}>
           Weelcome to my portfolio! I'm passionate about leveraging technology to solve real-world problems, with a focus on cybersecurity, data science, and full-stack development. Explore my projects and experiences to learn more about my journey in the world of computer science.
         </TypewriterText>
       </ContentWrapper>
