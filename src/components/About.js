@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -25,86 +25,80 @@ const About = () => {
   ];
 
   const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    hover: { scale: 1.05, transition: { duration: 0.3 } }
   };
+
+  const renderSection = (icon, title, content) => (
+    <motion.div 
+      className="about-section" 
+      variants={sectionVariants} 
+      initial="hidden" 
+      animate="visible"
+      whileHover="hover"
+    >
+      <div className="icon-container">
+        <FontAwesomeIcon icon={icon} className="section-icon" />
+      </div>
+      <h2>{title}</h2>
+      {content}
+    </motion.div>
+  );
 
   return (
     <ParallaxProvider>
       <div className="about-container">
-        <Parallax y={[-20, 20]} tagOuter="figure">
-          <div className="about-header">
-            <h1>About Me</h1>
-            <div className="animated-background"></div>
-          </div>
+        <Parallax y={[-10, 10]} tagOuter="figure">
+          <h1 className="about-header">About Me</h1>
         </Parallax>
 
-        <motion.div className="about-section" variants={sectionVariants} initial="hidden" animate="visible">
-          <div className="icon-container">
-            <FontAwesomeIcon icon={faUser} className="section-icon" />
-          </div>
-          <h2>Hrishith Raj Reddy Malgireddy</h2>
-          <h3>Cybersecurity Analyst | Software Developer | Data Scientist</h3>
-          <p>I am a passionate computer science professional with a keen focus on leveraging technology to solve real-world problems. Currently pursuing a Master of Science in Computer Science at the University of Missouri, Columbia, deepening my knowledge in cybersecurity, data science, and full-stack development.</p>
-        </motion.div>
+        <div className="sections-container">
+          {renderSection(faUser, "Hrishith Raj Reddy Malgireddy", 
+            <>
+              <h3>Cybersecurity Analyst | Software Developer | Data Scientist</h3>
+              <p>Passionate computer science professional pursuing an MS in Computer Science at the University of Missouri, Columbia. Focused on cybersecurity, data science, and full-stack development, with a drive to solve real-world problems through innovative technology solutions.</p>
+            </>
+          )}
 
-        <motion.div className="about-section" variants={sectionVariants} initial="hidden" animate="visible">
-          <div className="icon-container">
-            <FontAwesomeIcon icon={faCode} className="section-icon" />
-          </div>
-          <h2>Skills & Expertise</h2>
-          <p>Proficient in C, C++, Python, MySQL, PHP, Java, and JavaScript. Experienced with TensorFlow, PyTorch, Flask, AWS, and ReactJS. Advanced knowledge in cybersecurity, data analysis, and full-stack development. Comfortable working across Windows, Linux, and Mac environments.</p>
-        </motion.div>
+          {renderSection(faCode, "Skills & Expertise", 
+            <p>Proficient in C, C++, Python, MySQL, PHP, Java, and JavaScript. Experienced with TensorFlow, PyTorch, Flask, AWS, and ReactJS. Advanced knowledge in cybersecurity, data analysis, and full-stack development. Comfortable working across Windows, Linux, and Mac environments.</p>
+          )}
 
-        <motion.div className="about-section" variants={sectionVariants} initial="hidden" animate="visible">
-          <div className="icon-container">
-            <FontAwesomeIcon icon={faBriefcase} className="section-icon" />
-          </div>
-          <h2>Professional Experience</h2>
-          <ul>
-            {experienceItems.map((item, index) => (
-              <li key={index}>
-                <strong>{item.title}:</strong> {item.description}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+          {renderSection(faBriefcase, "Professional Experience", 
+            <ul>
+              {experienceItems.map((item, index) => (
+                <li key={index}>
+                  <strong>{item.title}:</strong> {item.description}
+                </li>
+              ))}
+            </ul>
+          )}
 
-        <motion.div className="about-section" variants={sectionVariants} initial="hidden" animate="visible">
-          <div className="icon-container">
-            <FontAwesomeIcon icon={faLightbulb} className="section-icon" />
-          </div>
-          <h2>Key Projects</h2>
-          <ul>
-            {projectItems.map((item, index) => (
-              <li key={index}>
-                <strong>{item.title}:</strong> {item.description}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+          {renderSection(faLightbulb, "Key Projects", 
+            <ul>
+              {projectItems.map((item, index) => (
+                <li key={index}>
+                  <strong>{item.title}:</strong> {item.description}
+                </li>
+              ))}
+            </ul>
+          )}
 
-        <motion.div className="about-section" variants={sectionVariants} initial="hidden" animate="visible">
-          <div className="icon-container">
-            <FontAwesomeIcon icon={faBook} className="section-icon" />
-          </div>
-          <h2>Publications</h2>
-          <ul>
-            {publicationItems.map((item, index) => (
-              <li key={index}>
-                <strong>{item.title}:</strong> {item.description}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+          {renderSection(faBook, "Publications", 
+            <ul>
+              {publicationItems.map((item, index) => (
+                <li key={index}>
+                  <strong>{item.title}:</strong> {item.description}
+                </li>
+              ))}
+            </ul>
+          )}
 
-        <motion.div className="about-section" variants={sectionVariants} initial="hidden" animate="visible">
-          <div className="icon-container">
-            <FontAwesomeIcon icon={faRocket} className="section-icon" />
-          </div>
-          <h2>Looking Ahead</h2>
-          <p>Constantly seeking opportunities to innovate and apply my knowledge in cybersecurity, data science, and software development to create impactful solutions. With a strong foundation in computer science, a commitment to continuous learning, and a drive for excellence, I am ready to contribute to challenging and transformative projects.</p>
-        </motion.div>
+          {renderSection(faRocket, "Looking Ahead", 
+            <p>Constantly seeking opportunities to innovate and apply my knowledge in cybersecurity, data science, and software development to create impactful solutions. With a strong foundation in computer science, a commitment to continuous learning, and a drive for excellence, I am ready to contribute to challenging and transformative projects.</p>
+          )}
+        </div>
       </div>
     </ParallaxProvider>
   );
@@ -119,96 +113,70 @@ const styles = `
   }
 
   .about-container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 20px;
   }
 
   .about-header {
-    height: 400px;
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
     position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    margin-bottom: 60px;
-  }
-
-  .about-header h1 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 4rem;
-    color: white;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
     z-index: 2;
   }
 
-  .animated-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-  }
-
-  @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  .sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
   .about-section {
     background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    padding: 40px;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease;
-  }
-
-  .about-section:hover {
-    transform: translateY(-10px);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
   }
 
   .icon-container {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 30px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    margin: 0 auto 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   }
 
   .section-icon {
-    font-size: 3rem;
+    font-size: 1.8rem;
     color: white;
   }
 
   h2 {
     color: #333;
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 2.2rem;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
   }
 
   h3 {
     color: #666;
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 1.4rem;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
   }
 
   p, ul {
     color: #444;
-    line-height: 1.8;
-    font-size: 1.1rem;
+    line-height: 1.6;
+    font-size: 1rem;
   }
 
   ul {
@@ -216,28 +184,28 @@ const styles = `
   }
 
   li {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
 
   @media (max-width: 768px) {
-    .about-header h1 {
-      font-size: 3rem;
+    .about-header {
+      font-size: 2rem;
     }
 
     .about-section {
-      padding: 30px;
+      padding: 20px;
     }
 
     h2 {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
 
     h3 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     p, ul {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
   }
 `;

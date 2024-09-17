@@ -11,13 +11,14 @@ const HomeContainer = styled(motion.div)`
   min-height: 100vh;
   text-align: center;
   padding: 2rem;
+  background-color: #ffffff;
 `;
 
 const ContentWrapper = styled(motion.div)`
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #ffffff;
   padding: 2rem;
   border-radius: 10px;
-  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
   max-width: 800px;
   width: 100%;
 `;
@@ -49,7 +50,7 @@ const TypewriterWrapper = styled.p`
   color: #444;
   min-height: 6em;
   position: relative;
-  text-align: left;
+  text-align: center;
 `;
 
 const Cursor = styled.span`
