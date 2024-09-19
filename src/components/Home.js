@@ -1,175 +1,151 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import styled from 'styled-components';
-import hrishithImage from '../hrishith.jpeg';
+import styled, { keyframes } from 'styled-components';
+import profileImage from '../hrishith.jpeg';
 
-const HomeContainer = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
+const popIn = keyframes`
+  0% { transform: scale(0); opacity: 0; }
+  90% { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+`;
+
+const blinkAnimation = keyframes`
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+`;
+
+const HomeContainer = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
   text-align: center;
-  padding: 2rem 1rem;
-  background-color: #ffffff;
-  
-  @media (min-width: 768px) {
-    padding: 2rem 4rem;
+  font-family: 'Arial', sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
   }
 `;
 
-const ContentWrapper = styled(motion.div)`
-  background-color: #ffffff;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
-  max-width: 800px;
-  width: 100%;
-  
-  @media (min-width: 768px) {
-    padding: 2rem;
-  }
-`;
-
-const ProfileImage = styled(motion.img)`
-  width: 150px;
-  height: 150px;
+const ProfileImage = styled.img`
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 2rem;
-  
-  @media (min-width: 768px) {
-    width: 200px;
-    height: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: ${popIn} 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
+  transform: scale(0.1);
+
+  &.loaded {
+    transform: scale(1);
+  }
+
+  @media (max-width: 768px) {
+    width: 120px;
+    height: 120px;
   }
 `;
 
-const Title = styled(motion.h1)`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #333;
-  
-  @media (min-width: 768px) {
-    font-size: 2.5rem;
+const Title = styled.h1`
+  font-size: 2.8rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: ${fadeIn} 1s ease-out forwards;
+  animation-delay: 0.3s;
+  font-weight: 600;
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
   }
 `;
 
-const Subtitle = styled(motion.h2)`
-  font-size: 1.1rem;
+const Subtitle = styled.h2`
+  font-size: 1.4rem;
+  color: #34495e;
   margin-bottom: 1.5rem;
-  color: #555;
-  
-  @media (min-width: 768px) {
-    font-size: 1.3rem;
+  opacity: 0;
+  animation: ${fadeIn} 1s ease-out forwards;
+  animation-delay: 0.6s;
+  font-weight: 400;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
   }
 `;
 
-const TypewriterWrapper = styled.p`
-  font-size: 1rem;
-  max-width: 600px;
-  margin: 0 auto 1.5rem;
-  color: #444;
-  min-height: 6em;
-  position: relative;
-  text-align: center;
-  
-  @media (min-width: 768px) {
-    font-size: 1.1rem;
+const Description = styled.p`
+  font-size: 1.2rem;
+  color: #3a4a5a;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 `;
 
 const Cursor = styled.span`
   display: inline-block;
   width: 1px;
-  height: 1.1em;
-  background-color: #444;
+  height: 1.2em;
+  background-color: #3a4a5a;
   margin-left: 2px;
-  animation: blink 1s infinite;
   vertical-align: text-bottom;
-  position: relative;
-  top: -0.1em;
-  
-  @keyframes blink {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
-  }
+  animation: ${blinkAnimation} 1.2s infinite;
 `;
 
-const useTypewriter = (text, speed = 30, delay = 0) => {
-  const [displayedText, setDisplayedText] = useState('');
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
+function Home() {
+  const [text, setText] = useState('');
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const fullText = "II'm a passionate computer science professional specializing in cybersecurity, data science, and full-stack development. With expertise in cutting-edge technologies and a drive for innovation, I create impactful solutions for complex real-world challenges.";
 
   useEffect(() => {
-    const delayTimeout = setTimeout(() => {
-      let i = 0;
-      const typingInterval = setInterval(() => {
-        if (i < text.length) {
-          setDisplayedText(prev => prev + text.charAt(i));
-          i++;
+    const typingDelay = 1100;
+
+    const typeText = () => {
+      let currentIndex = 0;
+      const intervalId = setInterval(() => {
+        if (currentIndex < fullText.length) {
+          setText((prev) => prev + fullText.charAt(currentIndex));
+          currentIndex++;
         } else {
-          clearInterval(typingInterval);
-          setIsTypingComplete(true);
+          clearInterval(intervalId);
         }
-      }, speed);
+      }, 10);
 
-      return () => clearInterval(typingInterval);
-    }, delay);
+      return () => clearInterval(intervalId);
+    };
 
-    return () => clearTimeout(delayTimeout);
-  }, [text, speed, delay]);
+    const timerId = setTimeout(typeText, typingDelay);
+    return () => clearTimeout(timerId);
+  }, []);
 
-  return { displayedText, isTypingComplete };
-};
-
-const TypewriterText = ({ children, speed, delay }) => {
-  const { displayedText } = useTypewriter(children, speed, delay);
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
 
   return (
-    <TypewriterWrapper>
-      {displayedText}
-      <Cursor />
-    </TypewriterWrapper>
-  );
-};
-
-function Home() {
-  return (
-    <HomeContainer
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
-      <ContentWrapper
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.8 }}
-      >
-        <ProfileImage
-          src={hrishithImage}
-          alt="Hrishith Raj Reddy Malgireddy"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.3, type: 'spring', stiffness: 120 }}
-        />
-        <Title
-          initial={{ y: -30 }}
-          animate={{ y: 0 }}
-          transition={{ delay: 0.4, type: 'spring', stiffness: 100 }}
-        >
-          Hrishith Raj Reddy Malgireddy
-        </Title>
-        <Subtitle
-          initial={{ y: -20 }}
-          animate={{ y: 0 }}
-          transition={{ delay: 0.5, type: 'spring', stiffness: 90 }}
-        >
-          Computer Science Graduate Student | Software Developer | Cybersecurity
-        </Subtitle>
-        <TypewriterText speed={20} delay={700}>
-          Weelcome to my portfolio! I'm passionate about leveraging technology to solve real-world problems, with a focus on cybersecurity, data science, and full-stack development. Explore my projects and experiences to learn more about my journey in the world of computer science.
-        </TypewriterText>
-      </ContentWrapper>
+    <HomeContainer>
+      <ProfileImage 
+        src={profileImage} 
+        alt="Hrishith Raj Reddy Malgireddy" 
+        onLoad={handleImageLoad}
+        className={imageLoaded ? 'loaded' : ''}
+      />
+      <Title>Hrishith Raj Reddy Malgireddy</Title>
+      <Subtitle>MSc Computer Science | Full Stack Developer | Cybersecurity Analyst</Subtitle>
+      <Description>
+        {text}
+        <Cursor />
+      </Description>
     </HomeContainer>
   );
 }
