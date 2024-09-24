@@ -3,40 +3,54 @@ import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPhone } from 'react-icon
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
-  background-color: black;
-  padding: 1rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+  background: linear-gradient(135deg, #2c3e50, #1a1a1a 40%, #000000 60%, #2c3e50);
+  padding: 0.5rem 0;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
 
-const CopyrightText = styled.p`
-  color: #ecf0f1;
-  font-size: 0.75rem;
-  margin-top: 0.5rem;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 80%);
+    transform: rotate(-30deg);
+  }
 `;
 
 const IconLinks = styled.div`
   display: flex;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
 `;
 
 const IconLink = styled.a`
-  color: #ecf0f1;
-  transition: color 0.3s ease;
+  color: #ffffff;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  position: relative;
   display: inline-block;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 
   &:hover {
-    color: #3498db;
-  }
-
-  svg {
-    transition: transform 0.3s ease;
-  }
-
-  &:hover svg {
+    color: #4a90e2;
     transform: scale(1.5);
+    text-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
   }
+`;
+
+const CopyrightText = styled.p`
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 `;
 
 function Footer() {
@@ -44,19 +58,19 @@ function Footer() {
     <StyledFooter>
       <IconLinks>
         <IconLink href="mailto:hrishithrajreddy22@gmail.com" aria-label="Email">
-          <FaEnvelope size={20} />
+          <FaEnvelope />
         </IconLink>
         <IconLink href="tel:+15736393854" aria-label="Phone">
-          <FaPhone size={20} />
+          <FaPhone />
         </IconLink>
         <IconLink href="https://github.com/Hrishith30" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <FaGithub size={20} />
+          <FaGithub />
         </IconLink>
         <IconLink href="https://www.linkedin.com/in/hrishith-raj-reddy-malgireddy-919750262/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <FaLinkedin size={20} />
+          <FaLinkedin />
         </IconLink>
         <IconLink href="https://x.com/RISHI333333" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-          <FaTwitter size={20} />
+          <FaTwitter />
         </IconLink>
       </IconLinks>
       <CopyrightText>&copy; 2024 My Portfolio. All rights reserved.</CopyrightText>

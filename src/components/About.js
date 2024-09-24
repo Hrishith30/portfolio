@@ -54,7 +54,9 @@ const About = () => {
     <ParallaxProvider>
       <div className="about-container">
         <Parallax y={[-10, 10]} tagOuter="figure">
-          <h1 className="about-header">About Me</h1>
+          <h1 className="about-header">
+            <span className="animated-text">About Me</span>
+          </h1>
         </Parallax>
 
         <div className="sections-container">
@@ -143,6 +145,40 @@ const styles = `
     position: relative;
     z-index: 2;
     transition: all 0.3s ease-in-out;
+    overflow: hidden;
+  }
+
+  .animated-text {
+    display: inline-block;
+    position: relative;
+    animation: fadeInUp 1.5s ease-out, gradientText 5s ease-in-out infinite;
+    background: linear-gradient(45deg, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes gradientText {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   .sections-container {
@@ -166,6 +202,10 @@ const styles = `
     transform: translateY(-7px);
   }
 
+  .about-section:hover .icon-container {
+    transform: rotate(360deg);
+  }
+
   .icon-container {
     width: 60px;
     height: 60px;
@@ -176,7 +216,7 @@ const styles = `
     align-items: center;
     margin: 0 auto 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out, transform 0.6s ease-in-out;
   }
 
   .section-icon {

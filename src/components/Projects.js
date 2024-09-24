@@ -1,12 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-import { FaCode, FaLock, FaRobot, FaCamera, FaMobileAlt, FaShoppingCart, FaImage, FaLanguage, FaBolt } from 'react-icons/fa';
+import { FaCode, FaLock, FaRobot, FaCamera, FaMobileAlt, FaShoppingCart, FaImage, FaLanguage, FaBolt, FaExternalLinkAlt } from 'react-icons/fa';
 
 const ProjectsContainer = styled(motion.div)`
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+`;
+
+const ProjectHeader = styled(motion.div)`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
+
+const ProjectTitle = styled(motion.h2)`
+  font-size: 2.5rem;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: #007bff;
+  }
+`;
+
+const ProjectSubtitle = styled(motion.p)`
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 1rem auto 0;
+  text-align: center;
 `;
 
 const ProjectsGrid = styled(motion.div)`
@@ -16,7 +48,8 @@ const ProjectsGrid = styled(motion.div)`
 `;
 
 const ProjectCard = styled(motion.div)`
-  background-color: #f0f0f0;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -30,21 +63,27 @@ const ProjectCard = styled(motion.div)`
   transition: all 0.3s ease;
 
   &:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
   }
 `;
 
 const ProjectIcon = styled(motion.div)`
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #333;
+  color: #007bff;
 `;
 
-const ProjectTitle = styled(motion.h3)`
+const ProjectName = styled(motion.h3)`
   margin: 0;
-  font-size: 1.4rem; // Increased from 1.2rem to 1.4rem
+  font-size: 1.4rem;
   color: #333;
-  line-height: 1.3; // Added to improve readability for longer titles
+  line-height: 1.3;
+  transition: color 0.3s ease;
+
+  ${ProjectCard}:hover & {
+    color: #007bff;
+  }
 `;
 
 const ProjectDate = styled(motion.p)`
@@ -71,60 +110,106 @@ const ProjectDescription = styled(motion.div)`
   }
 `;
 
+const ProjectLink = styled.a`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #007bff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  ${ProjectCard}:hover & {
+    opacity: 1;
+  }
+`;
+
+const TagContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+`;
+
+const Tag = styled.span`
+  background-color: #e0f0ff;
+  color: #007bff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+`;
+
 const projects = [
   {
     title: "Image Classification on CIFAR-10 using CNN",
     date: "Jan 2023",
     description: "Designed and implemented a Convolutional Neural Network (CNN) for classifying images in the CIFAR-10 dataset, achieving 91% accuracy. Enhanced the architecture by integrating DenseNet, improving overall performance. Conducted extensive testing on depixelated images to assess robustness and visualized results with detailed metrics.",
-    icon: FaImage
+    icon: FaImage,
+    tags: ["CNN", "Image Classification", "Deep Learning"],
+    link: "https://example.com/image-classification-project"
   },
   {
     title: "Noun-Phrase Detection using Neural Networks",
     date: "Jan 2023",
     description: "Developed a custom neural network model for detecting noun phrases in text. Transformed text data using word embeddings and contextual embeddings. Employed recurrent or convolutional architectures to optimize performance, fine-tuning the model to minimize loss and ensure accuracy across diverse datasets.",
-    icon: FaLanguage
+    icon: FaLanguage,
+    tags: ["NLP", "Neural Networks", "Text Analysis"],
+    link: "https://example.com/noun-phrase-detection-project"
   },
   {
     title: "SGChain and SDN using Knowledge Graphs in Power Grids",
     date: "Jan 2023",
     description: "Built a system to detect and defend against Distributed Denial-of-Service (DDoS) attacks in power grids. Trained neural networks for Phasor Measurement Units (PMUs) and created knowledge graphs to enhance responses during future attacks. Utilized AWS SageMaker to manage PMU datasets and optimize cyber defense strategies for smart grids.",
-    icon: FaBolt
+    icon: FaBolt,
+    tags: ["Cybersecurity", "Power Grids", "Machine Learning"],
+    link: "https://example.com/power-grid-security-project"
   },
   {
     title: "Full-Stack Web Development for E-Commerce Platform",
     date: "Nov 2022 – Mar 2023",
     description: "Contributed to full-stack development projects with a focus on E-Commerce platforms as a Software Developer Intern at Raise Digital. Developed backend services using Flask and MySQL, and integrated deep learning features into APIs to enhance platform performance. Led the creation of an Online Job Search Platform, focusing on web architecture, real-time database integration, and user experience design.",
-    icon: FaShoppingCart
+    icon: FaShoppingCart,
+    tags: ["ReactJS", "MongoDB", "Flask", "MySQL"],
+    link: "https://example.com/ecommerce-platform-project"
   },
   {
     title: "Home Appliance Control via Social Media",
     date: "Dec 2022",
     description: "Engineered a system using Raspberry Pi to remotely control home appliances through web-based commands or TeleBot. This solution enabled automated status updates and remote monitoring, allowing users to manage appliances from a distance, achieving energy savings by controlling devices remotely.",
-    icon: FaMobileAlt
+    icon: FaMobileAlt,
+    tags: ["IoT", "Raspberry Pi", "Home Automation"],
+    link: "https://example.com/home-appliance-control-project"
   },
   {
     title: "Smart Attendance System Using Facial Recognition",
     date: "Oct 2022",
     description: "Developed an automated system to streamline attendance-taking using facial recognition technology. Integrated camera inputs with face detection algorithms for accurate identification and recorded attendance in an Excel format, reducing manual entry and improving accuracy.",
-    icon: FaCamera
+    icon: FaCamera,
+    tags: ["Facial Recognition", "Computer Vision", "Automation"],
+    link: "https://example.com/smart-attendance-system-project"
   },
   {
     title: "Web Application Security Enhancement using Penetration Testing",
     date: "Jun 2022 – Nov 2022",
     description: "Performed Web Application Penetration Testing (WAPT) and bug hunting to uncover and report critical security vulnerabilities as an Ethical Hacker Intern at Supraja Technologies. Conducted detailed security assessments for various platforms, offering actionable insights to clients for enhancing security measures and vulnerability resolution.",
-    icon: FaCode
+    icon: FaCode,
+    tags: ["Web Security", "Penetration Testing", "Ethical Hacking"],
+    link: "https://example.com/web-security-project"
   },
   {
     title: "Cybersecurity Vulnerability Assessment and Mitigation",
     date: "Jan 2022 – May 2022",
     description: "Conducted comprehensive security breach assessments to identify system vulnerabilities as a Cyber Security Analyst Intern at Supraja Technologies. Developed custom scripts to address specific threats, and performed penetration testing to evaluate system defenses. Generated detailed vulnerability reports for clients, providing recommendations for mitigation and strengthening overall organizational cybersecurity.",
-    icon: FaLock
+    icon: FaLock,
+    tags: ["Cybersecurity", "Vulnerability Assessment", "Penetration Testing"],
+    link: "https://example.com/cybersecurity-assessment-project"
   },
   {
     title: "Data Analysis and Chatbot Development for Business Insights",
     date: "Jun 2021 – Dec 2021",
     description: "Conducted data analysis using Linear Discriminant Analysis and Hierarchical Clustering to generate actionable business insights as a Data Science Intern at Personifwy. Developed interactive chatbots using NLP technologies like NLTK and BABI-META, including a hospital chatbot built on Google Dialogflow to streamline patient interactions and improve information retrieval.",
-    icon: FaRobot
+    icon: FaRobot,
+    tags: ["Data Analysis", "Chatbot Development", "NLP"],
+    link: "https://example.com/data-analysis-chatbot-project"
   }
 ];
 
@@ -153,13 +238,22 @@ function Projects() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <motion.h2
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-      >
-        My Projects
-      </motion.h2>
+      <ProjectHeader>
+        <ProjectTitle
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          My Projects
+        </ProjectTitle>
+        <ProjectSubtitle
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
+          Explore my latest work and personal projects showcasing a diverse range of skills and technologies
+        </ProjectSubtitle>
+      </ProjectHeader>
       <ProjectsGrid
         initial="hidden"
         animate="visible"
@@ -189,8 +283,16 @@ function Projects() {
             >
               <project.icon />
             </ProjectIcon>
-            <ProjectTitle>{project.title}</ProjectTitle>
+            <ProjectName>{project.title}</ProjectName>
             <ProjectDate>{project.date}</ProjectDate>
+            <TagContainer>
+              {project.tags.map((tag, tagIndex) => (
+                <Tag key={tagIndex}>{tag}</Tag>
+              ))}
+            </TagContainer>
+            <ProjectLink href={project.link} target="_blank" rel="noopener noreferrer">
+              <FaExternalLinkAlt />
+            </ProjectLink>
             <AnimatePresence>
               {selectedIndex === index && (
                 <ProjectDescription
