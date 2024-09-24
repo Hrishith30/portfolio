@@ -4,10 +4,13 @@ import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
   background: linear-gradient(135deg, #2c3e50, #1a1a1a 40%, #000000 60%, #2c3e50);
-  padding: 0.5rem 0;
-  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  padding: 1rem 0 0.5rem;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
   position: relative;
   overflow: hidden;
+
   @keyframes gradientShift {
     0% {
       background-position: 0% 50%;
@@ -46,12 +49,28 @@ const IconLink = styled.a`
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 
   &:hover {
     color: #4a90e2;
-    transform: scale(1.5);
+    transform: scale(1.3) translateY(-2px);
     text-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background: #4a90e2;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  &:hover::after {
+    width: 100%;
+    left: 0;
   }
 `;
 
@@ -61,7 +80,7 @@ const CopyrightText = styled.p`
   opacity: 0.7;
   text-align: center;
   color: #ffffff;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 `;
 
 function Footer() {

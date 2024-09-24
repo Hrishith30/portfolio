@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-import { FaCode, FaLock, FaRobot, FaCamera, FaMobileAlt, FaShoppingCart, FaImage, FaLanguage, FaBolt, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaCode, FaLock, FaRobot, FaCamera, FaMobileAlt, FaShoppingCart, FaImage, FaLanguage, FaBolt } from 'react-icons/fa';
 
 const ProjectsContainer = styled(motion.div)`
   padding: 2rem;
@@ -16,26 +16,19 @@ const ProjectHeader = styled(motion.div)`
 
 const ProjectTitle = styled(motion.h2)`
   font-size: 2.5rem;
-  color: #000000;
   margin-bottom: 0.5rem;
   position: relative;
   display: inline-block;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 3px;
-    background-color: #007bff;
-  }
+  background: linear-gradient(45deg, #667eea, #764ba2, #6B8DD6, #8E37D7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 `;
 
 const ProjectSubtitle = styled(motion.p)`
   font-size: 1.1rem;
-  color: #666;
+  color: #bbb;
   max-width: 600px;
   margin: 1rem auto 0;
   text-align: center;
@@ -48,11 +41,11 @@ const ProjectsGrid = styled(motion.div)`
 `;
 
 const ProjectCard = styled(motion.div)`
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
   position: relative;
   overflow: hidden;
   height: 250px;
@@ -63,33 +56,42 @@ const ProjectCard = styled(motion.div)`
   transition: all 0.3s ease;
 
   &:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    transform: translateY(-7px);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
   }
 `;
 
 const ProjectIcon = styled(motion.div)`
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #007bff;
+  color: #667eea;
+  position: relative;
+  overflow: visible;
+  filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.5)) drop-shadow(0 0 12px rgba(102, 126, 234, 0.3));
+  transition: filter 0.3s ease;
+
+  ${ProjectCard}:hover & {
+    filter: drop-shadow(0 0 12px rgba(102, 126, 234, 0.7)) drop-shadow(0 0 18px rgba(102, 126, 234, 0.5));
+  }
 `;
 
 const ProjectName = styled(motion.h3)`
   margin: 0;
   font-size: 1.4rem;
-  color: #333;
+  color: #fff;
   line-height: 1.3;
   transition: color 0.3s ease;
 
   ${ProjectCard}:hover & {
-    color: #007bff;
+    color: #667eea;
   }
 `;
 
 const ProjectDate = styled(motion.p)`
   margin: 0.5rem 0;
   font-size: 0.9rem;
-  color: #666;
+  color: #bbb;
 `;
 
 const ProjectDescription = styled(motion.div)`
@@ -106,20 +108,7 @@ const ProjectDescription = styled(motion.div)`
   line-height: 1.6;
 
   p {
-    color: white;
-  }
-`;
-
-const ProjectLink = styled.a`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  color: #007bff;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-
-  ${ProjectCard}:hover & {
-    opacity: 1;
+    color: #bbb;
   }
 `;
 
@@ -131,8 +120,8 @@ const TagContainer = styled.div`
 `;
 
 const Tag = styled.span`
-  background-color: #e0f0ff;
-  color: #007bff;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: #fff;
   padding: 0.2rem 0.5rem;
   border-radius: 12px;
   font-size: 0.8rem;
@@ -145,7 +134,6 @@ const projects = [
     description: "Designed and implemented a Convolutional Neural Network (CNN) for classifying images in the CIFAR-10 dataset, achieving 91% accuracy. Enhanced the architecture by integrating DenseNet, improving overall performance. Conducted extensive testing on depixelated images to assess robustness and visualized results with detailed metrics.",
     icon: FaImage,
     tags: ["CNN", "Image Classification", "Deep Learning"],
-    link: "https://example.com/image-classification-project"
   },
   {
     title: "Noun-Phrase Detection using Neural Networks",
@@ -153,7 +141,6 @@ const projects = [
     description: "Developed a custom neural network model for detecting noun phrases in text. Transformed text data using word embeddings and contextual embeddings. Employed recurrent or convolutional architectures to optimize performance, fine-tuning the model to minimize loss and ensure accuracy across diverse datasets.",
     icon: FaLanguage,
     tags: ["NLP", "Neural Networks", "Text Analysis"],
-    link: "https://example.com/noun-phrase-detection-project"
   },
   {
     title: "SGChain and SDN using Knowledge Graphs in Power Grids",
@@ -161,7 +148,6 @@ const projects = [
     description: "Built a system to detect and defend against Distributed Denial-of-Service (DDoS) attacks in power grids. Trained neural networks for Phasor Measurement Units (PMUs) and created knowledge graphs to enhance responses during future attacks. Utilized AWS SageMaker to manage PMU datasets and optimize cyber defense strategies for smart grids.",
     icon: FaBolt,
     tags: ["Cybersecurity", "Power Grids", "Machine Learning"],
-    link: "https://example.com/power-grid-security-project"
   },
   {
     title: "Full-Stack Web Development for E-Commerce Platform",
@@ -169,7 +155,6 @@ const projects = [
     description: "Contributed to full-stack development projects with a focus on E-Commerce platforms as a Software Developer Intern at Raise Digital. Developed backend services using Flask and MySQL, and integrated deep learning features into APIs to enhance platform performance. Led the creation of an Online Job Search Platform, focusing on web architecture, real-time database integration, and user experience design.",
     icon: FaShoppingCart,
     tags: ["ReactJS", "MongoDB", "Flask", "MySQL"],
-    link: "https://example.com/ecommerce-platform-project"
   },
   {
     title: "Home Appliance Control via Social Media",
@@ -177,7 +162,6 @@ const projects = [
     description: "Engineered a system using Raspberry Pi to remotely control home appliances through web-based commands or TeleBot. This solution enabled automated status updates and remote monitoring, allowing users to manage appliances from a distance, achieving energy savings by controlling devices remotely.",
     icon: FaMobileAlt,
     tags: ["IoT", "Raspberry Pi", "Home Automation"],
-    link: "https://example.com/home-appliance-control-project"
   },
   {
     title: "Smart Attendance System Using Facial Recognition",
@@ -185,7 +169,6 @@ const projects = [
     description: "Developed an automated system to streamline attendance-taking using facial recognition technology. Integrated camera inputs with face detection algorithms for accurate identification and recorded attendance in an Excel format, reducing manual entry and improving accuracy.",
     icon: FaCamera,
     tags: ["Facial Recognition", "Computer Vision", "Automation"],
-    link: "https://example.com/smart-attendance-system-project"
   },
   {
     title: "Web Application Security Enhancement using Penetration Testing",
@@ -193,7 +176,6 @@ const projects = [
     description: "Performed Web Application Penetration Testing (WAPT) and bug hunting to uncover and report critical security vulnerabilities as an Ethical Hacker Intern at Supraja Technologies. Conducted detailed security assessments for various platforms, offering actionable insights to clients for enhancing security measures and vulnerability resolution.",
     icon: FaCode,
     tags: ["Web Security", "Penetration Testing", "Ethical Hacking"],
-    link: "https://example.com/web-security-project"
   },
   {
     title: "Cybersecurity Vulnerability Assessment and Mitigation",
@@ -201,7 +183,6 @@ const projects = [
     description: "Conducted comprehensive security breach assessments to identify system vulnerabilities as a Cyber Security Analyst Intern at Supraja Technologies. Developed custom scripts to address specific threats, and performed penetration testing to evaluate system defenses. Generated detailed vulnerability reports for clients, providing recommendations for mitigation and strengthening overall organizational cybersecurity.",
     icon: FaLock,
     tags: ["Cybersecurity", "Vulnerability Assessment", "Penetration Testing"],
-    link: "https://example.com/cybersecurity-assessment-project"
   },
   {
     title: "Data Analysis and Chatbot Development for Business Insights",
@@ -209,7 +190,6 @@ const projects = [
     description: "Conducted data analysis using Linear Discriminant Analysis and Hierarchical Clustering to generate actionable business insights as a Data Science Intern at Personifwy. Developed interactive chatbots using NLP technologies like NLTK and BABI-META, including a hospital chatbot built on Google Dialogflow to streamline patient interactions and improve information retrieval.",
     icon: FaRobot,
     tags: ["Data Analysis", "Chatbot Development", "NLP"],
-    link: "https://example.com/data-analysis-chatbot-project"
   }
 ];
 
@@ -290,9 +270,6 @@ function Projects() {
                 <Tag key={tagIndex}>{tag}</Tag>
               ))}
             </TagContainer>
-            <ProjectLink href={project.link} target="_blank" rel="noopener noreferrer">
-              <FaExternalLinkAlt />
-            </ProjectLink>
             <AnimatePresence>
               {selectedIndex === index && (
                 <ProjectDescription

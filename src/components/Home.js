@@ -19,14 +19,15 @@ const blinkAnimation = keyframes`
 `;
 
 const HomeContainer = styled.div`
-  max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
-  padding: 3rem 2rem;
+  padding: 3rem 0;
   text-align: center;
   font-family: 'Arial', sans-serif;
+  color: #ffffff;
 
   @media (max-width: 768px) {
-    padding: 2rem 1rem;
+    padding: 2rem 0;
   }
 `;
 
@@ -36,7 +37,7 @@ const ProfileImage = styled.img`
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
   animation: ${popIn} 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
   transform: scale(0.1);
@@ -53,7 +54,7 @@ const ProfileImage = styled.img`
 
 const Title = styled.h1`
   font-size: 2.8rem;
-  color: #2c3e50;
+  color: #61dafb;
   margin-bottom: 0.5rem;
   opacity: 0;
   animation: ${fadeIn} 1s ease-out forwards;
@@ -67,7 +68,7 @@ const Title = styled.h1`
 
 const Subtitle = styled.h2`
   font-size: 1.4rem;
-  color: #34495e;
+  color: #ffffff;
   margin-bottom: 1.5rem;
   opacity: 0;
   animation: ${fadeIn} 1s ease-out forwards;
@@ -81,7 +82,7 @@ const Subtitle = styled.h2`
 
 const Description = styled.p`
   font-size: 1.2rem;
-  color: #3a4a5a;
+  color: #cccccc;
   line-height: 1.6;
   max-width: 700px;
   margin: 0 auto;
@@ -96,7 +97,7 @@ const Cursor = styled.span`
   display: inline-block;
   width: 1px;
   height: 1.2em;
-  background-color: #3a4a5a;
+  background-color: #cccccc;
   margin-left: 2px;
   vertical-align: text-bottom;
   animation: ${blinkAnimation} 1.2s infinite;
@@ -105,7 +106,7 @@ const Cursor = styled.span`
 function Home() {
   const [text, setText] = useState('');
   const [imageLoaded, setImageLoaded] = useState(false);
-  const fullText = "II am a dedicated computer science professional with a specialization in cybersecurity, full-stack development and datascience. Leveraging my expertise in advanced technologies, I am committed to driving innovation and delivering impactful solutions to complex, real-world challenges.";
+  const fullText = "II am a dedicated computer science professional with a specialization in cybersecurity, full-stack development and data science. Leveraging my expertise in advanced technologies, I am committed to driving innovation and delivering impactful solutions to complex, real-world challenges.";
 
   useEffect(() => {
     const typingDelay = 1100;

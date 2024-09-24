@@ -63,7 +63,7 @@ const About = () => {
           <Section icon={faUser} title="Hrishith Raj Reddy Malgireddy" 
             content={
               <>
-                <h3>Cybersecurity Analyst | Software Developer | Data Scientist</h3>
+                <h3>MSc Graduate Student | Cybersecurity Analyst | Software Developer</h3>
                 <p>Passionate computer science professional pursuing an MS in Computer Science at the University of Missouri, Columbia. Focused on cybersecurity, data science, and full-stack development, with a drive to solve real-world problems through innovative technology solutions.</p>
               </>
             }
@@ -137,15 +137,17 @@ const styles = `
     transition: all 0.3s ease-in-out;
   }
 
-  .about-header {
+    .about-header {
     font-size: 2.5rem;
-    color: #fff;
+    margin-bottom: 0.5rem;
     text-align: center;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 2;
-    transition: all 0.3s ease-in-out;
-    overflow: hidden;
+    display: block;
+    width: 100%;
+    background: linear-gradient(45deg, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .animated-text {
