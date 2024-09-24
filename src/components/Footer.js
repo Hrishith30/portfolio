@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
@@ -99,8 +100,8 @@ function Footer() {
         <IconLink href="https://www.linkedin.com/in/hrishith-raj-reddy-malgireddy-919750262/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <FaLinkedin />
         </IconLink>
-        <IconLink href="https://x.com/RISHI333333" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-          <FaTwitter />
+        <IconLink href="https://x.com/RISHI333333" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
+          <FaXTwitter />
         </IconLink>
       </IconLinks>
       <CopyrightText>&copy; 2024 My Portfolio. All rights reserved.</CopyrightText>
