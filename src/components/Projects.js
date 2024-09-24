@@ -231,7 +231,7 @@ function Projects() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          Explore my latest work and personal projects showcasing a diverse range of skills and technologies
+          Explore my latest work and personal projects showcasing a diverse range of skills and technologies.
         </ProjectSubtitle>
       </ProjectHeader>
       <ProjectsGrid
