@@ -8,6 +8,17 @@ const StyledFooter = styled.footer`
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
   &::before {
     content: '';

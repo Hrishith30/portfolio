@@ -127,7 +127,7 @@ const styles = `
 
   body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #2c3e50, #1a1a1a 40%, #000000 60%, #2c3e50);
   }
 
   .about-container {
@@ -139,7 +139,7 @@ const styles = `
 
   .about-header {
     font-size: 2.5rem;
-    color: #333;
+    color: #fff;
     text-align: center;
     margin-bottom: 20px;
     position: relative;
@@ -189,16 +189,16 @@ const styles = `
   }
 
   .about-section {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 25px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
     transition: all 0.3s ease-in-out, box-shadow 0.3s ease, transform 0.3s ease;
   }
 
   .about-section:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     transform: translateY(-7px);
   }
 
@@ -209,7 +209,8 @@ const styles = `
   .icon-container {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(45deg, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    background-size: 300% 300%;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -217,6 +218,7 @@ const styles = `
     margin: 0 auto 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out, transform 0.6s ease-in-out;
+    animation: gradientIcon 5s ease-in-out infinite;
   }
 
   .section-icon {
@@ -224,22 +226,34 @@ const styles = `
     color: white;
   }
 
+  @keyframes gradientIcon {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   h2 {
-    color: #333;
+    color: #fff;
     text-align: center;
     margin-bottom: 15px;
     font-size: 1.8rem;
   }
 
   h3 {
-    color: #666;
+    color: #ddd;
     text-align: center;
     margin-bottom: 20px;
     font-size: 1.2rem;
   }
 
   p, ul {
-    color: #444;
+    color: #bbb;
     line-height: 1.6;
     font-size: 1rem;
   }

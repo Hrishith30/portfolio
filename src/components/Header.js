@@ -4,10 +4,24 @@ import styled from 'styled-components';
 
 const StyledHeader = styled.header`
   background: linear-gradient(135deg, #2c3e50, #1a1a1a 40%, #000000 60%, #2c3e50);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   padding: 1rem 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 1);
   position: relative;
   overflow: hidden;
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
   &::before {
     content: '';
