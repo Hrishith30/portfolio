@@ -105,7 +105,7 @@ const Cursor = styled.span`
 function Home() {
   const [text, setText] = useState('');
   const [imageLoaded, setImageLoaded] = useState(false);
-  const fullText = "II'm a passionate computer science professional specializing in cybersecurity, data science, and full-stack development. With expertise in cutting-edge technologies and a drive for innovation, I create impactful solutions for complex real-world challenges.";
+  const fullText = "II am a dedicated computer science professional with a specialization in cybersecurity, full-stack development and datascience. Leveraging my expertise in advanced technologies, I am committed to driving innovation and delivering impactful solutions to complex, real-world challenges.";
 
   useEffect(() => {
     const typingDelay = 1100;
