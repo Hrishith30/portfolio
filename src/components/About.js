@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faCode, faBriefcase, faLightbulb, faBook, faRocket } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faCode, faBriefcase, faLightbulb, faBook, faRocket, faDownload } from '@fortawesome/free-solid-svg-icons';
 
 const Section = ({ icon, title, content }) => {
   const ref = React.useRef(null);
@@ -111,11 +111,19 @@ const About = () => {
             }
           />
 
-          <Section icon={faRocket} title="Looking Ahead" 
-            content={
-              <p>Constantly seeking opportunities to innovate and apply my knowledge in cybersecurity, data science, and software development to create impactful solutions. With a strong foundation in computer science, a commitment to continuous learning, and a drive for excellence, I am ready to contribute to challenging and transformative projects.</p>
-            }
-          />
+<Section icon={faRocket} title="Looking Ahead" 
+  content={
+    <>
+      <p>Constantly seeking opportunities to innovate and apply my knowledge in cybersecurity, data science, and software development to create impactful solutions. With a strong foundation in computer science, a commitment to continuous learning, and a drive for excellence, I am ready to contribute to challenging and transformative projects.</p>
+      <div className="resume-download">
+        <a href={process.env.PUBLIC_URL + '/Hrishith.pdf'} download className="download-button">
+          <FontAwesomeIcon icon={faDownload} className="download-icon" />
+          Download Resume
+        </a>
+      </div>
+    </>
+  }
+/>
         </div>
       </div>
     </ParallaxProvider>
@@ -137,7 +145,7 @@ const styles = `
     transition: all 0.3s ease-in-out;
   }
 
-    .about-header {
+  .about-header {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
     text-align: center;
@@ -172,15 +180,9 @@ const styles = `
   }
 
   @keyframes gradientText {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   .sections-container {
@@ -229,15 +231,9 @@ const styles = `
   }
 
   @keyframes gradientIcon {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   h2 {
@@ -266,6 +262,35 @@ const styles = `
 
   li {
     margin-bottom: 10px;
+  }
+
+  .resume-download {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  .download-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .download-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(45deg, #764ba2, #667eea);
+  }
+
+  .download-icon {
+    margin-right: 10px;
   }
 
   @media (max-width: 768px) {
@@ -326,6 +351,11 @@ const styles = `
 
     p, ul {
       font-size: 0.85rem;
+    }
+
+    .download-button {
+      padding: 10px 20px;
+      font-size: 0.9rem;
     }
   }
 `;
