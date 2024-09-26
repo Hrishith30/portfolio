@@ -37,7 +37,11 @@ const ProfileImage = styled.img`
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 0 10px rgba(97, 218, 251, 0.6),
+    0 0 20px rgba(97, 218, 251, 0.4),
+    0 0 30px rgba(97, 218, 251, 0.2),
+    0 0 40px rgba(97, 218, 251, 0.1);
   animation: ${popIn} 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
   transform: scale(0.1);

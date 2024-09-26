@@ -56,7 +56,7 @@ const ProjectCard = styled(motion.div)`
   transition: all 0.3s ease;
 
   &:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5), 0 15px 40px rgba(118, 75, 162, 0.5);
     transform: translateY(-7px);
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
   }
