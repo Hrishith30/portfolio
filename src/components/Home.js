@@ -31,20 +31,34 @@ const HomeContainer = styled.div`
   }
 `;
 
+const shockwaveAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(97, 218, 251, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(97, 218, 251, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(97, 218, 251, 0);
+  }
+`;
+
 const ProfileImage = styled.img`
   width: 180px;
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
   box-shadow: 
-    0 0 10px rgba(97, 218, 251, 0.6),
-    0 0 20px rgba(97, 218, 251, 0.4),
-    0 0 30px rgba(97, 218, 251, 0.2),
-    0 0 40px rgba(97, 218, 251, 0.1);
-  animation: ${popIn} 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
-  transform: scale(0.1);
+    0 0 0 0 rgba(97, 218, 251, 0.4),
+    0 0 0 0 rgba(97, 218, 251, 0.4),
+    0 0 0 0 rgba(97, 218, 251, 0.4);
+  animation: 
+    ${popIn} 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    ${shockwaveAnimation} 2s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  transition: width 0.5s ease, height 0.5s ease;
 
   &.loaded {
     transform: scale(1);
@@ -55,6 +69,7 @@ const ProfileImage = styled.img`
     height: 120px;
   }
 `;
+
 
 const Title = styled.h1`
   font-size: 2.8rem;
