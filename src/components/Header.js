@@ -14,7 +14,11 @@ const StyledHeader = styled.header`
 
   padding: 0.8rem 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 1);
-  position: relative;
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
 
   overflow: hidden;
 
