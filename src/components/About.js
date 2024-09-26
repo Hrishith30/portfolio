@@ -196,13 +196,13 @@ const styles = `
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 25px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
     backdrop-filter: blur(5px);
     transition: all 0.3s ease-in-out, box-shadow 0.3s ease, transform 0.3s ease;
   }
 
   .about-section:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
     transform: translateY(-7px);
   }
 
