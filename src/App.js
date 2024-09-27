@@ -1,6 +1,7 @@
-import React from 'react';
-import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { HashRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import ReactGA from "react-ga4";
 import Header from './components/Header';
 import Home from './components/Home';
 import Projects from './components/Projects';
@@ -17,7 +18,21 @@ const MainContent = styled.main`
   flex: 1;
 `;
 
+function PageViewTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
+  }, [location]);
+
+  return null;
+}
+
 function App() {
+  useEffect(() => {
+    ReactGA.initialize("G-FSFVLP1JQC");
+  }, []);
+
   return (
     <Router>
       <AppContainer>
@@ -31,6 +46,7 @@ function App() {
           </Routes>
         </MainContent>
         <Footer />
+        <PageViewTracker />
       </AppContainer>
     </Router>
   );
