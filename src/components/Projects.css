@@ -70,19 +70,34 @@
   padding-top: 1rem;
   display: flex;
   gap: 1rem;
-}
-
-.project-links .btn.full-width {
   width: 100%;
-  text-align: center;
 }
 
+.project-links .btn {
+  flex: 1;
+  text-align: center;
+  min-width: 120px;
+}
+
+/* Large tablets and small laptops */
+@media (max-width: 1024px) {
+  .project-links {
+    gap: 0.875rem;
+  }
+}
+
+/* iPads and tablets */
 @media (max-width: 768px) {
   .project-content {
     padding: 1.25rem;
   }
+  
+  .project-links {
+    gap: 0.75rem;
+  }
 }
 
+/* Mobile landscape and small tablets */
 @media (max-width: 576px) {
   .project-title {
     font-size: 1.25rem;
@@ -94,6 +109,27 @@
   
   .project-links {
     flex-direction: row;
-    justify-content: center;
+    gap: 0.625rem;
+    padding-top: 0.875rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 360px) {
+  .project-links {
+    gap: 0.5rem;
+  }
+  
+  .project-links .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Handle landscape orientations */
+@media (max-height: 576px) and (orientation: landscape) {
+  .project-links {
+    padding-top: 0.75rem;
+    gap: 0.625rem;
   }
 } 
