@@ -42,7 +42,28 @@ const Projects = () => {
       description: 'A simple, responsive layouts built with Reactjs and styled with CSS. Made for personal use.',
       technologies: ['Reactjs', 'CSS3', 'Nextjs', 'Tailwindcss'],
       github: 'https://github.com/Hrishith30/designs',
-    }
+    },
+    {
+      title: 'Tic Tac Toe Game',
+      description: 'A simple, responsive tic tac toe game built with Nextjs and styled with tailwindcss. Made for personal use.',
+      technologies: ['Nextjs', 'Tailwindcss', 'TypeScript'],
+      github: 'https://github.com/Hrishith30/tic-tac-toe',
+      demo: 'https://tic-tac-toe-4xfu.vercel.app/'
+    },
+    {
+      title: 'wall',
+      description: 'A simple, responsive wall built with Nextjs and styled with tailwindcss. Made for personal use.',
+      technologies: ['Nextjs', 'Tailwindcss', 'TypeScript', 'Supabase'],
+      github: 'https://github.com/Hrishith30/wall',
+      demo: 'https://wall-zeta.vercel.app/'
+    },
+    {
+      title: 'marketplace',
+      description: 'A simple, responsive marketplace built with Nextjs and styled with tailwindcss. Made for personal use.',
+      technologies: ['Nextjs', 'Tailwindcss', 'TypeScript', 'Supabase'],
+      github: 'https://github.com/Hrishith30/marketplace',
+      demo: 'https://marketplace-mdox.vercel.app/'
+    },
   ];
 
   return (

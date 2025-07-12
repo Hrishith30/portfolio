@@ -267,4 +267,127 @@
   .certification-title {
     font-size: 1.1rem;
   }
+}
+
+/* 1920x1080 (Full HD Landscape) */
+@media screen and (min-width: 1920px) and (min-height: 1080px) {
+  .about-content {
+    gap: 5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .about-text {
+    font-size: 1.25rem;
+    line-height: 1.9;
+  }
+  
+  .about-text p {
+    margin-bottom: 2rem;
+    padding: 0.75rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+  
+  .skill-category {
+    padding: 2rem;
+    border-radius: 0.75rem;
+  }
+  
+  .skill-category-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .skill-item {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  
+  .certifications-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+  }
+  
+  .certification-card {
+    padding: 2rem;
+    border-radius: 0.75rem;
+  }
+  
+  .certification-title {
+    font-size: 1.4rem;
+  }
+  
+  .certification-issuer {
+    font-size: 1.1rem;
+  }
+  
+  .certification-date {
+    font-size: 1rem;
+  }
+}
+
+/* 1080x1920 (Portrait Mobile/Tablet) */
+@media screen and (max-width: 1080px) and (min-height: 1920px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  
+  .about-text p {
+    margin-bottom: 1.25rem;
+    padding: 0.5rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .skill-category {
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+  }
+  
+  .skill-category-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.875rem;
+  }
+  
+  .skill-item {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .certifications-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .certification-card {
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+  }
+  
+  .certification-title {
+    font-size: 1.2rem;
+  }
+  
+  .certification-issuer {
+    font-size: 1rem;
+  }
+  
+  .certification-date {
+    font-size: 0.9rem;
+  }
 } 

@@ -14,16 +14,16 @@
   align-items: center;
 }
 
-.hero-content {
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  min-height: 400px;
-  position: relative;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease forwards;
-}
+  .hero-content {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    min-height: 430px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+  }
 
 @keyframes fadeInUp {
   to {
@@ -579,5 +579,135 @@ and (orientation: landscape) {
 
   .btn-primary, .btn-outline, .resume-btn {
     margin: 0;
+  }
+} 
+
+/* 1920x1080 (Full HD Landscape) */
+@media screen and (min-width: 1920px) and (min-height: 1080px) {
+  .hero {
+    padding-top: 5rem;
+    min-height: 100vh;
+  }
+  
+  .hero-container {
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .hero-title {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-subtitle-cube .face {
+    font-size: 2rem;
+  }
+  
+  .hero-description {
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .hero-image-container {
+    width: 350px;
+    height: 350px;
+  }
+  
+  .hero-image::after {
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border-width: 5px;
+  }
+  
+  .hero-content {
+    min-height: 550px;
+  }
+  
+  .hero-buttons {
+    position: absolute;
+    bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    gap: 1.5rem;
+  }
+  
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* 1080x1920 (Portrait Mobile/Tablet) */
+@media screen and (max-width: 1080px) and (min-height: 1920px) {
+  .hero {
+    padding-top: 3rem;
+    min-height: 100vh;
+  }
+  
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 300px;
+  }
+  
+  .hero-title {
+    font-size: 2.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-subtitle-wrapper {
+    height: 35px;
+    margin: 15px 0;
+    text-align: center;
+  }
+  
+  .hero-subtitle-cube .face {
+    font-size: 1.4rem;
+    justify-content: center;
+  }
+  
+  .hero-description {
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    min-height: 50px;
+  }
+  
+  .hero-image {
+    order: -1;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-image-container {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .hero-image::after {
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    border-width: 3px;
+  }
+  
+  .hero-buttons {
+    position: static;
+    margin-top: 2rem;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
   }
 } 
