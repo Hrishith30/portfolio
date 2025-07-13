@@ -51,14 +51,14 @@ const Projects = () => {
       demo: 'https://tic-tac-toe-4xfu.vercel.app/'
     },
     {
-      title: 'wall',
+      title: 'Wall',
       description: 'A simple, responsive wall built with Nextjs and styled with tailwindcss. Made for personal use.',
       technologies: ['Nextjs', 'Tailwindcss', 'TypeScript', 'Supabase'],
       github: 'https://github.com/Hrishith30/wall',
       demo: 'https://wall-zeta.vercel.app/'
     },
     {
-      title: 'marketplace',
+      title: 'Marketplace',
       description: 'A simple, responsive marketplace built with Nextjs and styled with tailwindcss. Made for personal use.',
       technologies: ['Nextjs', 'Tailwindcss', 'TypeScript', 'Supabase'],
       github: 'https://github.com/Hrishith30/marketplace',

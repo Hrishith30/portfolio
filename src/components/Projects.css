@@ -65,6 +65,17 @@
   color: white;
 }
 
+/* Dark mode specific styling for tech tags */
+[data-theme="dark"] .tech-tag {
+  background-color: #374151; /* Darker background for dark mode */
+}
+
+/* Dark mode hover effect - same blue as light mode */
+[data-theme="dark"] .tech-tag:hover {
+  background-color: #2563eb; /* Same blue as light mode primary color */
+  color: white;
+}
+
 .project-links {
   margin-top: auto;
   padding-top: 1rem;
