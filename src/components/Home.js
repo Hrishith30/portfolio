@@ -1,53 +1,37 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Home.css';
-import { FadeTransition } from './PageTransition';
 import profileImage from '../assets/hrishith.jpeg';
 import resume from '../assets/Hrishith.pdf';
-import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 
 const Home = () => {
   return (
-    <FadeTransition>
-      <section className="hero">
+    <section className="hero">
         <div className="container hero-container">
-          <motion.div 
+          <div 
             className="hero-content"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <motion.h1 
+            <h1 
               className="hero-title"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
             >
               Hi, I'm
               <br />
-              <motion.span 
+              <span 
                 className="highlight"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
               >
                 Hrishith Raj Reddy Malgireddy
-              </motion.span>
-            </motion.h1>
+              </span>
+            </h1>
             
-            <motion.div 
+            <div 
               className="hero-subtitle-wrapper"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
             >
               <div className="hero-subtitle-cube">
                 <div className="face front">Full Stack Developer</div>
                 <div className="face back">Cyber Security Enthusiast</div>
                 <div className="face right">AI/ML Developer</div>
               </div>
-            </motion.div>
+            </div>
 
             <div className="hero-description">
               <TypeAnimation
@@ -62,18 +46,15 @@ const Home = () => {
               />
             </div>
 
-            <motion.div 
+            <div 
               className="hero-buttons"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
             >
-              <Link to="/projects" className="btn btn-primary">
+              <button className="btn btn-primary" onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}>
                 View My Work
-              </Link>
-              <Link to="/contact" className="btn btn-outline">
+              </button>
+              <button className="btn btn-outline" onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}>
                 Contact Me
-              </Link>
+              </button>
               <a 
                 href={resume} 
                 download 
@@ -83,14 +64,11 @@ const Home = () => {
               >
                 <i className="fas fa-download"></i> Download Resume
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          <motion.div 
+          <div 
             className="hero-image"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
           >
             <div className="hero-image-container">
               <img 
@@ -99,10 +77,9 @@ const Home = () => {
                 className="profile-image"
               />
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
-    </FadeTransition>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Projects.css';
-import { SlideTransition } from './PageTransition';
+
 const Projects = () => {
   const projects = [
     {
@@ -67,11 +67,10 @@ const Projects = () => {
   ];
 
   return (
-    <SlideTransition>
-      <section className="projects section">
-        <div className="container">
-          <h2 className="section-title">My Projects</h2>
-          <div className="projects-grid">
+    <section className="projects section">
+      <div className="container">
+        <h2 className="section-title">My Projects</h2>
+        <div className="projects-grid">
           {projects.map((project, index) => (
             <div key={index} className="project-card">
               <div className="project-content">
@@ -104,8 +103,7 @@ const Projects = () => {
           ))}
         </div>
       </div>
-      </section>
-    </SlideTransition>
+    </section>
   );
 };
 

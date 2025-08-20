@@ -1,22 +1,16 @@
 import React, { useState, useMemo } from 'react';
 import './Contact.css';
-import { FadeTransition } from './PageTransition';
-import { motion, AnimatePresence } from 'framer-motion';
 import { countries } from 'countries-list';
 
 const ErrorNotification = ({ message, onClose }) => (
-  <motion.div 
+  <div 
     className="error-notification"
-    initial={{ x: 300, opacity: 0 }}
-    animate={{ x: 0, opacity: 1 }}
-    exit={{ x: 300, opacity: 0 }}
-    transition={{ type: "spring", stiffness: 100, damping: 15 }}
   >
     <div className="error-content">
       <i className="fas fa-exclamation-circle"></i>
       <span>{message}</span>
     </div>
-  </motion.div>
+  </div>
 );
 
 const Contact = () => {
@@ -41,16 +35,6 @@ const Contact = () => {
       }))
       .sort((a, b) => a.name.localeCompare(b.name));
   }, []);
-
-  const validateEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  const validatePhone = (phone) => {
-    const digits = phone.replace(/\D/g, '');
-    return digits.length === 10;
-  };
 
   const formatPhoneNumber = (value) => {
     if (!value) return value;
@@ -219,152 +203,133 @@ const Contact = () => {
   };
 
   return (
-    <FadeTransition>
-      <section className="contact section">
-        <div className="container">
-          <motion.h2 
-            className="section-title"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Get In Touch
-          </motion.h2>
-          <div className="contact-content">
-            {/* Error Notification */}
-            <AnimatePresence>
-              {showError && serverError && (
-                <ErrorNotification 
-                  message={serverError} 
-                  onClose={() => {
-                    setShowError(false);
-                    setServerError('');
-                  }}
-                />
-              )}
-            </AnimatePresence>
+    <section className="contact section">
+      <div className="container">
+        <h2 className="section-title">
+          Get In Touch
+        </h2>
+        <div className="contact-content">
+          {/* Error Notification */}
+          {showError && serverError && (
+            <ErrorNotification 
+              message={serverError} 
+              onClose={() => {
+                setShowError(false);
+                setServerError('');
+              }}
+            />
+          )}
 
-            {/* Contact Form */}
-            <div className="contact-form-container">
-              <AnimatePresence mode="wait">
-                {showSuccess ? (
-                  <motion.div 
-                    className="success-message"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                  >
-                    <i className="fas fa-check-circle"></i>
-                    <h3>Message Sent Successfully!</h3>
-                    <p>Thank you for reaching out. I'll get back to you soon.</p>
-                  </motion.div>
-                ) : (
-                  <motion.form 
-                    className="contact-form"
-                    onSubmit={handleSubmit}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <div className="form-row">
-                      <div className="form-group">
-                        <label htmlFor="name">Full Name</label>
-                        <input 
-                          type="text" 
-                          id="name" 
-                          name="name" 
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="John Doe"
-                          className={errors.name ? 'error' : ''}
-                        />
-                        {errors.name && <span className="error-message">{errors.name}</span>}
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="email">Email Address</label>
-                        <input 
-                          type="email" 
-                          id="email" 
-                          name="email" 
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="johndoe@example.com"
-                          className={errors.email ? 'error' : ''}
-                        />
-                        {errors.email && <span className="error-message">{errors.email}</span>}
-                      </div>
-                    </div>
+          {/* Contact Form */}
+          <div className="contact-form-container">
+            {showSuccess ? (
+              <div className="success-message">
+                <i className="fas fa-check-circle"></i>
+                <h3>Message Sent Successfully!</h3>
+                <p>Thank you for reaching out. I'll get back to you soon.</p>
+              </div>
+            ) : (
+              <form 
+                className="contact-form"
+                onSubmit={handleSubmit}
+              >
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="name">Full Name</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      name="name" 
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="John Doe"
+                      className={errors.name ? 'error' : ''}
+                    />
+                    {errors.name && <span className="error-message">{errors.name}</span>}
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">Email Address</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      name="email" 
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="johndoe@example.com"
+                      className={errors.email ? 'error' : ''}
+                    />
+                    {errors.email && <span className="error-message">{errors.email}</span>}
+                  </div>
+                </div>
 
-                    <div className="contact-row">
-                      <div className="form-group country-code-group">
-                        <label htmlFor="countryCode">Country</label>
-                        <select
-                          id="countryCode"
-                          name="countryCode"
-                          value={formData.countryCode}
-                          onChange={handleInputChange}
-                        >
-                          {countriesList.map((country) => (
-                            <option key={country.code} value={country.code}>
-                              {country.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      
-                      <div className="form-group phone-group">
-                        <label htmlFor="phone">Phone Number</label>
-                        <div className="phone-input-wrapper">
-                          <div className="country-code-display">
-                            +{countries[formData.countryCode]?.phone}
-                          </div>
-                          <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handlePhoneChange}
-                            placeholder="123-456-7890"
-                          />
-                        </div>
-                        {errors.phone && <span className="error-message">{errors.phone}</span>}
-                      </div>
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="message">Message</label>
-                      <textarea 
-                        id="message" 
-                        name="message" 
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder="Write your message here..."
-                        className={errors.message ? 'error' : ''}
-                      ></textarea>
-                      {errors.message && <span className="error-message">{errors.message}</span>}
-                    </div>
-
-                    {errors.submit && <div className="error-message submit-error">{errors.submit}</div>}
-
-                    <button 
-                      type="submit" 
-                      className="submit-button"
-                      disabled={isSubmitting}
+                <div className="contact-row">
+                  <div className="form-group country-code-group">
+                    <label htmlFor="countryCode">Country</label>
+                    <select
+                      id="countryCode"
+                      name="countryCode"
+                      value={formData.countryCode}
+                      onChange={handleInputChange}
                     >
-                      {isSubmitting ? (
-                        <span className="loading-spinner"></span>
-                      ) : (
-                        <>Send Message <i className="fas fa-paper-plane"></i></>
-                      )}
-                    </button>
-                  </motion.form>
-                )}
-              </AnimatePresence>
-            </div>
+                      {countriesList.map((country) => (
+                        <option key={country.code} value={country.code}>
+                          {country.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  
+                  <div className="form-group phone-group">
+                    <label htmlFor="phone">Phone Number</label>
+                    <div className="phone-input-wrapper">
+                      <div className="country-code-display">
+                        +{countries[formData.countryCode]?.phone}
+                      </div>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handlePhoneChange}
+                        placeholder="123-456-7890"
+                      />
+                    </div>
+                    {errors.phone && <span className="error-message">{errors.phone}</span>}
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="message">Message</label>
+                  <textarea 
+                    id="message" 
+                    name="message" 
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Write your message here..."
+                    className={errors.message ? 'error' : ''}
+                  ></textarea>
+                  {errors.message && <span className="error-message">{errors.message}</span>}
+                </div>
+
+                {errors.submit && <div className="error-message submit-error">{errors.submit}</div>}
+
+                <button 
+                  type="submit" 
+                  className="submit-button"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <span className="loading-spinner"></span>
+                  ) : (
+                    <>Send Message <i className="fas fa-paper-plane"></i></>
+                  )}
+                </button>
+              </form>
+            )}
           </div>
         </div>
-      </section>
-    </FadeTransition>
+      </div>
+    </section>
   );
 };
 
