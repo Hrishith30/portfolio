@@ -102,6 +102,51 @@ body {
     min-height: 90vh;
   }
   
+  /* Home section - exactly 0px from navbar on mobile */
+  #home {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+}
+
+/* iPhone 15 Pro Max and larger mobile devices */
+@media (max-width: 844px) {
+  #home {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+}
+
+/* iPhone 15 Pro Max specific targeting */
+@media only screen 
+  and (device-width: 430px) 
+  and (device-height: 932px) 
+  and (-webkit-device-pixel-ratio: 3) {
+  #home {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+}
+
+/* iPhone 15 Pro Max landscape */
+@media only screen 
+  and (device-width: 932px) 
+  and (device-height: 430px) 
+  and (-webkit-device-pixel-ratio: 3) {
+  #home {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+}
+
+/* Additional mobile targeting */
+@media (max-width: 430px) {
+  #home {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+}
+
   .main-content {
     padding-top: 100px;
   }
@@ -110,7 +155,6 @@ body {
     font-size: 2rem;
     margin-bottom: 2rem;
   }
-}
 
 /* Mobile Phones (Landscape) */
 @media (min-width: 568px) and (max-width: 767px) and (orientation: landscape) {

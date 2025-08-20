@@ -52,9 +52,20 @@ const Home = () => {
               <button className="btn btn-primary" onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}>
                 View My Work
               </button>
-              <button className="btn btn-outline" onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}>
-                Contact Me
-              </button>
+                             <button className="btn btn-outline" onClick={() => {
+                 // First scroll to contact section
+                 document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                 
+                 // Then scroll to footer to show both contact and footer
+                 setTimeout(() => {
+                   const footer = document.querySelector('footer');
+                   if (footer) {
+                     footer.scrollIntoView({ behavior: 'smooth' });
+                   }
+                 }, 1500);
+               }}>
+                 Contact Me
+               </button>
               <a 
                 href={resume} 
                 download 

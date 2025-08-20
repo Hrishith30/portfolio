@@ -138,8 +138,8 @@
   display: flex;
   gap: 1rem;
   margin-top: 3rem;
-  position: absolute;
-  bottom: -45px;
+  position: relative;
+  bottom: 0;
 }
 
 .btn {
@@ -230,6 +230,19 @@
   transition: background-color 0.3s ease;
 }
 
+/* Zoom-specific responsive design for 20% to 80% zoom levels */
+@media (max-width: 1400px) {
+  .hero-content {
+    min-height: 480px;
+  }
+  
+  .hero-buttons {
+    margin-top: 2.5rem;
+    position: relative;
+    bottom: 0;
+  }
+}
+
 @media (max-width: 1200px) {
   .hero-title {
     font-size: 3rem;
@@ -238,11 +251,47 @@
   .hero-subtitle {
     font-size: 1.75rem;
   }
+  
+  .hero-content {
+    min-height: 460px;
+  }
+  
+  .hero-buttons {
+    margin-top: 2.25rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero-content {
+    min-height: 440px;
+  }
+  
+  .hero-buttons {
+    margin-top: 2rem;
+  }
 }
 
 @media (max-width: 992px) {
   .hero-container {
     gap: 3rem;
+  }
+  
+  .hero-content {
+    min-height: 420px;
+  }
+  
+  .hero-buttons {
+    margin-top: 1.75rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-content {
+    min-height: 400px;
+  }
+  
+  .hero-buttons {
+    margin-top: 1.5rem;
   }
 }
 
@@ -259,7 +308,7 @@
 
   .hero-content {
     order: 2;
-    min-height: 300px;
+    min-height: 350px;
     align-items: center;
   }
 
@@ -270,8 +319,8 @@
 
   .hero-buttons {
     position: relative;
-    margin-top: 0.75rem;
-    bottom: 10px;
+    margin-top: 1.5rem;
+    bottom: 0;
     justify-content: center;
     gap: 0.5rem;
     flex-direction: column;
@@ -339,8 +388,8 @@
   }
 
   .hero-buttons {
-    margin-top: 0.5rem;
-    bottom: 15px;
+    margin-top: 1rem;
+    bottom: 0;
   }
 
   .hero-buttons .btn {
@@ -358,6 +407,14 @@
   .hero-image-container {
     width: 200px;
     height: 200px;
+  }
+  
+  .hero-content {
+    min-height: 320px;
+  }
+  
+  .hero-buttons {
+    margin-top: 0.75rem;
   }
 }
 
@@ -387,7 +444,11 @@ and (orientation: portrait) {
   .hero-buttons {
     position: relative;
     margin-top: 2rem;
-    bottom: -30px; /* Move buttons down */
+    bottom: 0;
+  }
+  
+  .hero-content {
+    min-height: 450px;
   }
 }
 
@@ -399,7 +460,11 @@ and (orientation: portrait) {
   .hero-buttons {
     position: relative;
     margin-top: 2rem;
-    bottom: -40px; /* Move buttons down */
+    bottom: 0;
+  }
+  
+  .hero-content {
+    min-height: 480px;
   }
 }
 
@@ -409,7 +474,7 @@ and (min-device-width: 768px)
 and (max-device-width: 1366px)
 and (orientation: portrait) {
   .hero-content {
-    min-height: 420px; /* Increase container height to accommodate moved buttons */
+    min-height: 450px; /* Increase container height to accommodate moved buttons */
   }
 }
 
@@ -441,7 +506,7 @@ and (orientation: portrait) {
   }
 
   .hero-content {
-    min-height: 420px;
+    min-height: 450px;
     width: 100%;
     align-items: center;
     margin: 0 auto;
@@ -485,7 +550,7 @@ and (orientation: portrait) {
   .hero-buttons {
     position: relative;
     margin-top: 2rem;
-    bottom: -40px;
+    bottom: 0;
     display: flex;
     gap: 1rem;
     width: auto;
@@ -513,6 +578,10 @@ and (orientation: portrait) {
   .hero-image {
     margin-top: -3rem; /* Larger top spacing for iPad Pro */
   }
+  
+  .hero-content {
+    min-height: 500px;
+  }
 }
 
 /* Specific adjustments for iPad Mini */
@@ -527,6 +596,10 @@ and (orientation: portrait) {
   
   .hero-image {
     margin-top: -1.5rem; /* Smaller top spacing for iPad Mini */
+  }
+  
+  .hero-content {
+    min-height: 420px;
   }
 }
 
@@ -623,13 +696,13 @@ and (orientation: landscape) {
   }
   
   .hero-content {
-    min-height: 550px;
+    min-height: 600px;
   }
   
   .hero-buttons {
-    position: absolute;
+    position: relative;
     bottom: 0;
-    margin-top: 0;
+    margin-top: 3rem;
     margin-bottom: 0;
     gap: 1.5rem;
   }
@@ -656,7 +729,7 @@ and (orientation: landscape) {
   .hero-content {
     max-width: 600px;
     margin: 0 auto;
-    min-height: 300px;
+    min-height: 350px;
   }
   
   .hero-title {
