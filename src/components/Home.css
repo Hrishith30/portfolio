@@ -1,17 +1,40 @@
-.hero {
-  width: 100%;
+.home {
+  min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0;
-  background-color: var(--background);
-  transition: background-color 0.3s ease;
+  margin: 0;
+  position: relative;
+  /* Move content up */
+  padding-top: 0;
+  margin-top: -50px;
+}
+
+.hero {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  /* Move hero section up */
+  margin-top: -80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  /* Reduce top padding to move content up */
+  padding-top: 1rem;
 }
 
 .hero-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 3rem;
   align-items: center;
+  /* Reduce top spacing even more */
+  padding-top: 0;
+  margin-top: -60px;
 }
 
   .hero-content {
@@ -23,6 +46,9 @@
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s ease forwards;
+    /* Move content up more */
+    margin-top: -60px;
+    padding-top: 0;
   }
 
 @keyframes fadeInUp {
@@ -36,7 +62,9 @@
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  line-height: 1.2;
+  /* Reduce top margin more */
+  margin-top: -20px;
+  line-height: 1.1;
   color: var(--text-color);
   transition: color 0.3s ease;
 }
@@ -75,6 +103,10 @@
   height: 40px;
   margin: 20px 0;
   text-align: left;
+  /* Reduce spacing */
+  margin-bottom: 1.5rem;
+  /* Reduce spacing */
+  margin-top: 0;
 }
 
 .hero-subtitle-cube {
@@ -132,48 +164,145 @@
   font-size: 1.25rem;
   color: var(--light-text);
   transition: color 0.3s ease;
+  /* Reduce spacing */
+  margin-bottom: 2rem;
+  /* Reduce spacing */
+  margin-top: 0;
+  color: var(--text-secondary);
 }
 
+/* Debug and fallback styles to ensure button visibility */
 .hero-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 3rem;
-  position: relative;
-  bottom: 0;
+  display: flex !important;
+  gap: 1rem !important;
+  /* Reduce top margin to move buttons up more */
+  margin-top: 1rem !important;
+  position: relative !important;
+  bottom: 0 !important;
+  /* Force visibility */
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 100 !important;
 }
 
-.btn {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s ease;
+.hero-buttons .btn,
+.hero-buttons .btn-primary,
+.hero-buttons .btn-outline,
+.hero-buttons .resume-btn {
+  /* Force all essential properties */
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+  position: relative !important;
+  z-index: 100 !important;
+  /* Ensure minimum dimensions */
+  min-width: 120px !important;
+  min-height: 44px !important;
+  /* Force colors */
+  background-color: #3b82f6 !important;
+  color: white !important;
+  border: 2px solid #3b82f6 !important;
+  /* Ensure text is visible */
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  /* Force layout */
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 0.5rem !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
-.btn-primary {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
+/* Specific button overrides */
+.hero-buttons .btn-outline {
+  background-color: transparent !important;
+  color: #3b82f6 !important;
+  border: 2px solid #3b82f6 !important;
 }
 
-.btn-outline {
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
+.hero-buttons .btn-outline:hover {
+  background-color: #3b82f6 !important;
+  color: white !important;
+}
+
+.hero-buttons .btn-primary:hover,
+.hero-buttons .resume-btn:hover {
+  background-color: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+}
+
+/* Force resume button to always be blue */
+.hero-buttons .resume-btn,
+.hero-buttons .resume-btn:active,
+.hero-buttons .resume-btn:focus,
+.hero-buttons .resume-btn:hover {
+  background-color: #3b82f6 !important;
+  color: white !important;
+  border: 2px solid #3b82f6 !important;
+}
+
+/* Additional specificity for resume button */
+section.home .hero .hero-buttons .resume-btn,
+section.home .hero .hero-buttons .resume-btn:active,
+section.home .hero .hero-buttons .resume-btn:focus,
+section.home .hero .hero-buttons .resume-btn:hover {
+  background-color: #3b82f6 !important;
+  color: white !important;
+  border: 2px solid #3b82f6 !important;
+}
+
+/* Dark mode button adjustments */
+[data-theme="dark"] .btn-outline {
+  border-color: #3b82f6;
+  color: #3b82f6;
   background: transparent;
-  transition: all 0.3s ease;
 }
 
-.btn-outline:hover {
-  background-color: var(--primary-color);
+[data-theme="dark"] .btn-outline:hover {
+  background-color: #3b82f6;
   color: white;
-  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .btn-primary {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* Light mode button adjustments */
+[data-theme="light"] .btn-outline {
+  border-color: #3b82f6;
+  color: #3b82f6;
+  background: transparent;
+}
+
+[data-theme="light"] .btn-outline:hover {
+  background-color: #3b82f6;
+  color: white;
+}
+
+[data-theme="light"] .btn-primary {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+[data-theme="light"] .btn-primary:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
 }
 
 .hero-image {
   position: relative;
   width: fit-content;
   margin: 0 auto;
+  /* Move image up more */
+  margin-top: -60px;
 }
 
 .hero-image-container {
@@ -297,55 +426,41 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding-top: 5rem;
+    padding-top: 8rem;
     text-align: center;
+    min-height: 100vh;
   }
 
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2rem;
+    padding: 1rem;
+    margin-top: 3rem;
   }
 
   .hero-content {
     order: 2;
-    min-height: 350px;
+    min-height: auto;
     align-items: center;
+    margin-top: 0;
+    padding: 0;
   }
 
-  .hero-image-container {
-    width: 250px;
-    height: 250px;
-  }
-
-  .hero-buttons {
-    position: relative;
-    margin-top: 1.5rem;
-    bottom: 0;
-    justify-content: center;
-    gap: 0.5rem;
-    flex-direction: column;
-    width: 100%;
-    max-width: 200px;
-  }
-
-  .btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    width: 100%;
-    justify-content: center;
+  .hero-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
     text-align: center;
-  }
-
-  .btn-primary, .btn-outline, .resume-btn {
-    margin: 0;
+    align-self: center;
   }
 
   .hero-subtitle-wrapper {
     text-align: center;
     width: 100%;
     height: 40px;
-    margin: 10px 0;
-    transform: translateY(-15px);
+    margin: 1rem 0;
+    transform: translateY(0);
   }
 
   .hero-subtitle-cube {
@@ -355,66 +470,157 @@
 
   .hero-subtitle-cube .face {
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   .hero-description {
-    min-height: 60px;
-    margin: 0.5rem 0;
-    transform: translateY(-25px);
-    font-size: 1.25rem;
+    min-height: auto;
+    margin: 1rem 0;
+    transform: translateY(0);
+    font-size: 1.1rem;
+    text-align: center;
+    align-self: center;
+    line-height: 1.5;
+  }
+
+  .hero-image {
+    order: 1;
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  .hero-image-container {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+  }
+
+  .hero-buttons {
+    position: relative;
+    margin-top: 2rem;
+    bottom: 0;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    min-height: 48px;
+  }
+
+  .btn-primary, .btn-outline, .resume-btn {
+    margin: 0;
   }
 }
 
 @media (max-width: 576px) {
-  .hero-title {
-    font-size: 2.25rem;
+  .hero {
+    padding-top: 7rem;
+    min-height: 100vh;
   }
 
-  .hero-subtitle {
-    font-size: 1.25rem;
+  .hero-container {
+    gap: 1.5rem;
+    padding: 0.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-subtitle-wrapper {
+    height: 35px;
+    margin: 0.75rem 0;
+  }
+
+  .hero-subtitle-cube .face {
+    font-size: 1rem;
   }
 
   .hero-description {
     font-size: 1rem;
+    margin: 0.75rem 0;
+    line-height: 1.4;
   }
 
   .hero-image-container {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
   }
 
   .hero-buttons {
-    margin-top: 1rem;
-    bottom: 0;
+    max-width: 250px;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
   }
 
-  .hero-buttons .btn {
-    min-width: 130px;
-    padding: 0.75rem 1rem;
+  .btn {
+    padding: 0.625rem 1.25rem;
     font-size: 0.9rem;
-  }
-
-  .hero-subtitle-cube .face {
-    font-size: 1.1rem;
+    min-height: 44px;
   }
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding-top: 6.5rem;
+  }
+
+  .hero-container {
+    gap: 1rem;
+    padding: 0.25rem;
+    margin-top: 2rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-subtitle-wrapper {
+    height: 30px;
+    margin: 0.5rem 0;
+  }
+
+  .hero-subtitle-cube .face {
+    font-size: 0.9rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+  }
+
   .hero-image-container {
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
   }
-  
-  .hero-content {
-    min-height: 320px;
-  }
-  
+
   .hero-buttons {
-    margin-top: 0.75rem;
+    max-width: 220px;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    min-height: 40px;
   }
 }
 
@@ -422,18 +628,51 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: var(--primary-color);
+  background-color: #3b82f6;
   color: white;
-  border: none;
+  border: 2px solid #3b82f6;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
 }
 
 .resume-btn:hover {
-  background-color: var(--primary-color);
-  transform: translateY(-2px);
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+  /* Remove transform to prevent movement */
+  transform: none;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }
 
 .resume-btn i {
   font-size: 1rem;
+}
+
+/* Dark mode resume button */
+[data-theme="dark"] .resume-btn {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+[data-theme="dark"] .resume-btn:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* Light mode resume button */
+[data-theme="light"] .resume-btn {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+[data-theme="light"] .resume-btn:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
 }
 
 /* iPad Mini and regular iPad in portrait mode */
@@ -782,5 +1021,136 @@ and (orientation: landscape) {
   .btn {
     padding: 0.875rem 1.5rem;
     font-size: 1rem;
+  }
+} 
+
+/* High specificity button visibility override */
+section.home .hero .hero-buttons button.btn,
+section.home .hero .hero-buttons a.btn,
+section.home .hero .hero-buttons .btn-primary,
+section.home .hero .hero-buttons .btn-outline,
+section.home .hero .hero-buttons .resume-btn {
+  /* Force visibility with highest priority */
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+  position: relative !important;
+  z-index: 9999 !important;
+  /* Force colors */
+  background-color: #3b82f6 !important;
+  color: white !important;
+  border: 2px solid #3b82f6 !important;
+  /* Force dimensions */
+  min-width: 120px !important;
+  min-height: 44px !important;
+  /* Force layout */
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 0.5rem !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  /* Prevent movement */
+  transform: none !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Outline button specific override */
+section.home .hero .hero-buttons .btn-outline {
+  background-color: transparent !important;
+  color: #3b82f6 !important;
+  border: 2px solid #3b82f6 !important;
+}
+
+/* Hover effects without movement */
+section.home .hero .hero-buttons .btn:hover,
+section.home .hero .hero-buttons .btn-primary:hover,
+section.home .hero .hero-buttons .resume-btn:hover {
+  background-color: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+  /* Remove transform to prevent movement */
+  transform: none !important;
+}
+
+section.home .hero .hero-buttons .btn-outline:hover {
+  background-color: #3b82f6 !important;
+  color: white !important;
+  /* Remove transform to prevent movement */
+  transform: none !important;
+}
+
+/* Active/focus states without movement */
+section.home .hero .hero-buttons .btn:active,
+section.home .hero .hero-buttons .btn:focus,
+section.home .hero .hero-buttons .btn-primary:active,
+section.home .hero .hero-buttons .btn-primary:focus,
+section.home .hero .hero-buttons .btn-outline:active,
+section.home .hero .hero-buttons .btn-outline:focus {
+  /* Prevent any movement */
+  transform: none !important;
+  outline: none !important;
+} 
+
+/* Prevent any button movement in all states */
+.hero-buttons .btn,
+.hero-buttons .btn-primary,
+.hero-buttons .btn-outline,
+.hero-buttons .resume-btn {
+  /* Prevent movement in all states */
+  transform: none !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.hero-buttons .btn:hover,
+.hero-buttons .btn-primary:hover,
+.hero-buttons .btn-outline:hover,
+.hero-buttons .resume-btn:hover {
+  /* Prevent movement on hover */
+  transform: none !important;
+}
+
+.hero-buttons .btn:active,
+.hero-buttons .btn-primary:active,
+.hero-buttons .btn-outline:active,
+.hero-buttons .resume-btn:active {
+  /* Prevent movement when clicked */
+  transform: none !important;
+}
+
+.hero-buttons .btn:focus,
+.hero-buttons .btn-primary:focus,
+.hero-buttons .btn-outline:focus,
+.hero-buttons .resume-btn:focus {
+  /* Prevent movement on focus */
+  transform: none !important;
+  outline: none !important;
+} 
+
+/* Mobile-specific glowing circle adjustments */
+@media (max-width: 768px) {
+  .hero-image::after {
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-image::after {
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image::after {
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
   }
 } 

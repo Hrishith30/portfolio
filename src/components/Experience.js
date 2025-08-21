@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Experience.css';
 
 const Experience = () => {
+  const timelineRef = useRef(null);
+  const timelineItemsRef = useRef([]);
+
   const experiences = [
     {
       title: "Research Assistant and Teaching Assistant",
@@ -22,17 +25,55 @@ const Experience = () => {
       company: "Supraja Technologies",
       period: "Jan 2022 – Nov 2022",
       description: "Developed automation scripts and integrated security tools to detect vulnerabilities early in the development lifecycle, enhancing the robustness of software infrastructure. Collaborated with developers to perform WAPT and simulate cyberattacks, identifying backend logic flaws and implementing secure coding practices and remediation directly into the codebase. Streamlined security assessment workflows by integrating CI/CD pipelines with automated scanning tools, reducing manual effort and accelerating vulnerability resolution.",
-      technologies: ["Python", "Kali Linux", "Burp Suite", "OWASP ZAP", "Nmap", "Metasploit", "Wireshark", "Bash", "Linux"]
+      technologies: ["Python", "Kali Linux", "Burp Suite", "OWASP ZAP", "Nmap", "Metasplift", "Wireshark", "Bash", "Linux"]
     }
   ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Add animation class when scrolling down
+            entry.target.classList.add('animate-in');
+            entry.target.classList.remove('animate-out');
+          } else {
+            // Add animation class when scrolling up
+            entry.target.classList.add('animate-out');
+            entry.target.classList.remove('animate-in');
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '-50px 0px'
+      }
+    );
+
+    // Observe the timeline itself for the middle stick line
+    if (timelineRef.current) {
+      observer.observe(timelineRef.current);
+    }
+
+    // Observe timeline items
+    timelineItemsRef.current.forEach((item) => {
+      if (item) observer.observe(item);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="experience-container">
       <div className="container">
         <h2 className="section-title">Work Experience</h2>
-        <div className="timeline">
+        <div className="timeline" ref={timelineRef}>
           {experiences.map((exp, index) => (
-            <div key={index} className="timeline-item">
+            <div 
+              key={index} 
+              className="timeline-item"
+              ref={(el) => (timelineItemsRef.current[index] = el)}
+            >
               <div className="timeline-marker"></div>
               <div className="timeline-content">
                 <div className="experience-header">

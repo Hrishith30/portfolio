@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './About.css';
 
 const About = () => {
+  const aboutRef = useRef(null);
+  
   const skills = [
     { category: 'Frontend', items: ['React', 'JavaScript', 'HTML5', 'Angular', 'CSS3'] },
     { category: 'Backend', items: ['Node.js', 'ExpressJS', 'SQL', 'PHP', 'MongoDB'] },
@@ -48,13 +50,15 @@ const About = () => {
       date: 'May 2021',
       credentialId: 'ST#IS#2176'
     }
-
   ];
 
-
+  useEffect(() => {
+    // This component will be observed by the scroll animation system
+    // The ref is attached to the main section element
+  }, []);
 
   return (
-    <section className="about section">
+    <section className="about section" ref={aboutRef}>
         <div className="container">
           <h2 
             className="section-title"

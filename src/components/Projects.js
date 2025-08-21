@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Projects.css';
 
 const Projects = () => {
+  const projectsRef = useRef(null);
+  
   const projects = [
     {
       title: 'E-Commerce Platform',
@@ -66,8 +68,13 @@ const Projects = () => {
     },
   ];
 
+  useEffect(() => {
+    // This component will be observed by the scroll animation system
+    // The ref is attached to the main section element
+  }, []);
+
   return (
-    <section className="projects section">
+    <section className="projects section" ref={projectsRef}>
       <div className="container">
         <h2 className="section-title">My Projects</h2>
         <div className="projects-grid">

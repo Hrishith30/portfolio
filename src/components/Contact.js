@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import './Contact.css';
 import { countries } from 'countries-list';
 
@@ -14,6 +14,7 @@ const ErrorNotification = ({ message, onClose }) => (
 );
 
 const Contact = () => {
+  const contactRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -202,8 +203,13 @@ const Contact = () => {
     }
   };
 
+  useEffect(() => {
+    // This component will be observed by the scroll animation system
+    // The ref is attached to the main section element
+  }, []);
+
   return (
-    <section className="contact section">
+    <section className="contact section" ref={contactRef}>
       <div className="container">
         <h2 className="section-title">
           Get In Touch

@@ -16,11 +16,26 @@
   position: absolute;
   left: 50%;
   top: 0;
-  bottom: 0;
   width: 3px;
   background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
   transform: translateX(-50%);
   border-radius: 2px;
+  opacity: 0;
+  height: 0;
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Timeline stick animation when scrolling down - comes first */
+.timeline.animate-in::before {
+  opacity: 1;
+  height: 100%;
+  transition-delay: 0s;
+}
+
+/* Timeline stick animation when scrolling up - keep it visible */
+.timeline.animate-out::before {
+  opacity: 1;
+  height: 100%;
 }
 
 .timeline-item {
@@ -51,6 +66,33 @@
   z-index: 2;
   box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.2);
   transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+}
+
+/* Marker animations when scrolling down - comes second after stick */
+.timeline-item.animate-in .timeline-marker {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Marker animations when scrolling up */
+.timeline-item.animate-out .timeline-marker {
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+}
+
+/* Staggered marker animations - after stick line */
+.timeline-item:nth-child(1).animate-in .timeline-marker {
+  transition-delay: 0.05s;
+}
+
+.timeline-item:nth-child(2).animate-in .timeline-marker {
+  transition-delay: 0.1s;
+}
+
+.timeline-item:nth-child(3).animate-in .timeline-marker {
+  transition-delay: 0.15s;
 }
 
 .timeline-marker:hover {
@@ -65,33 +107,55 @@
   border-radius: 1.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
-  transform: translateY(30px);
-  animation: slideInUp 0.8s ease forwards;
   position: relative;
   overflow: hidden;
 }
 
-/* Removed the top bar on hover */
-
-@keyframes slideInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Initial state - content is hidden */
+.timeline-item .timeline-content {
+  opacity: 0;
+  transform: translateX(-100px);
 }
 
-.timeline-item:nth-child(1) .timeline-content {
-  animation-delay: 0.2s;
+/* Left side content slides in from left */
+.timeline-item:nth-child(odd) .timeline-content {
+  transform: translateX(-100px);
 }
 
-.timeline-item:nth-child(2) .timeline-content {
-  animation-delay: 0.4s;
+/* Right side content slides in from right */
+.timeline-item:nth-child(even) .timeline-content {
+  transform: translateX(100px);
 }
 
-.timeline-item:nth-child(3) .timeline-content {
-  animation-delay: 0.6s;
+/* Animation when scrolling down - comes third after markers */
+.timeline-item:nth-child(1).animate-in .timeline-content {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.08s;
+}
+
+.timeline-item:nth-child(2).animate-in .timeline-content {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.12s;
+}
+
+.timeline-item:nth-child(3).animate-in .timeline-content {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.16s;
+}
+
+/* Animation when scrolling up */
+.timeline-item.animate-out .timeline-content {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.timeline-item:nth-child(even).animate-out .timeline-content {
+  transform: translateX(100px);
 }
 
 .timeline-item:nth-child(odd) .timeline-content {
@@ -117,6 +181,92 @@
   color: var(--primary-color);
   margin-bottom: 0.75rem;
   letter-spacing: -0.025em;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+/* Content animations when scrolling down - immediately after content boxes */
+.timeline-item:nth-child(1).animate-in .job-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.timeline-item:nth-child(1).animate-in .company-info {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.12s;
+}
+
+.timeline-item:nth-child(1).animate-in .job-description {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.14s;
+}
+
+.timeline-item:nth-child(1).animate-in .technologies {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.16s;
+}
+
+.timeline-item:nth-child(2).animate-in .job-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.14s;
+}
+
+.timeline-item:nth-child(2).animate-in .company-info {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.16s;
+}
+
+.timeline-item:nth-child(2).animate-in .job-description {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.18s;
+}
+
+.timeline-item:nth-child(2).animate-in .technologies {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.timeline-item:nth-child(3).animate-in .job-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.18s;
+}
+
+.timeline-item:nth-child(3).animate-in .company-info {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.timeline-item:nth-child(3).animate-in .job-description {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.22s;
+}
+
+.timeline-item:nth-child(3).animate-in .technologies {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.24s;
+}
+
+/* Content animations when scrolling up */
+.timeline-item.animate-out .job-title,
+.timeline-item.animate-out .company-info,
+.timeline-item.animate-out .job-description,
+.timeline-item.animate-out .technologies {
+  opacity: 0;
+  transform: translateY(20px);
+  transition-delay: 0s;
 }
 
 .company-info {
@@ -124,6 +274,9 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.75rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
 }
 
 .company-name {
@@ -148,6 +301,9 @@
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
   text-align: justify;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
 }
 
 .technologies {
@@ -155,6 +311,9 @@
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
 }
 
 .tech-tag {
@@ -165,14 +324,62 @@
   font-size: 0.8rem;
   font-weight: 600;
   box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
-  transition: all 0.3s ease;
+  transition: all 0.5s ease-out;
   white-space: nowrap;
+  opacity: 0;
+  transform: translateY(15px) scale(0.8);
+}
+
+/* Tech tag animations when scrolling down */
+.timeline-item.animate-in .tech-tag {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Tech tag animations when scrolling up */
+.timeline-item.animate-out .tech-tag {
+  opacity: 0;
+  transform: translateY(15px) scale(0.8);
 }
 
 .tech-tag:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
+
+/* Staggered tech tag animations when scrolling down - after text content */
+.timeline-item:nth-child(1).animate-in .tech-tag:nth-child(1) { transition-delay: 0.18s; }
+.timeline-item:nth-child(1).animate-in .tech-tag:nth-child(2) { transition-delay: 0.2s; }
+.timeline-item:nth-child(1).animate-in .tech-tag:nth-child(3) { transition-delay: 0.22s; }
+.timeline-item:nth-child(1).animate-in .tech-tag:nth-child(4) { transition-delay: 0.24s; }
+.timeline-item:nth-child(1).animate-in .tech-tag:nth-child(5) { transition-delay: 0.26s; }
+.timeline-item:nth-child(1).animate-in .tech-tag:nth-child(6) { transition-delay: 0.28s; }
+.timeline-item:nth-child(1).animate-in .tech-tag:nth-child(7) { transition-delay: 0.3s; }
+.timeline-item:nth-child(1).animate-in .tech-tag:nth-child(8) { transition-delay: 0.32s; }
+.timeline-item:nth-child(1).animate-in .tech-tag:nth-child(9) { transition-delay: 0.34s; }
+.timeline-item:nth-child(1).animate-in .tech-tag:nth-child(10) { transition-delay: 0.36s; }
+
+.timeline-item:nth-child(2).animate-in .tech-tag:nth-child(1) { transition-delay: 0.22s; }
+.timeline-item:nth-child(2).animate-in .tech-tag:nth-child(2) { transition-delay: 0.24s; }
+.timeline-item:nth-child(2).animate-in .tech-tag:nth-child(3) { transition-delay: 0.26s; }
+.timeline-item:nth-child(2).animate-in .tech-tag:nth-child(4) { transition-delay: 0.28s; }
+.timeline-item:nth-child(2).animate-in .tech-tag:nth-child(5) { transition-delay: 0.3s; }
+.timeline-item:nth-child(2).animate-in .tech-tag:nth-child(6) { transition-delay: 0.32s; }
+.timeline-item:nth-child(2).animate-in .tech-tag:nth-child(7) { transition-delay: 0.34s; }
+.timeline-item:nth-child(2).animate-in .tech-tag:nth-child(8) { transition-delay: 0.36s; }
+.timeline-item:nth-child(2).animate-in .tech-tag:nth-child(9) { transition-delay: 0.38s; }
+.timeline-item:nth-child(2).animate-in .tech-tag:nth-child(10) { transition-delay: 0.4s; }
+
+.timeline-item:nth-child(3).animate-in .tech-tag:nth-child(1) { transition-delay: 0.26s; }
+.timeline-item:nth-child(3).animate-in .tech-tag:nth-child(2) { transition-delay: 0.28s; }
+.timeline-item:nth-child(3).animate-in .tech-tag:nth-child(3) { transition-delay: 0.3s; }
+.timeline-item:nth-child(3).animate-in .tech-tag:nth-child(4) { transition-delay: 0.32s; }
+.timeline-item:nth-child(3).animate-in .tech-tag:nth-child(5) { transition-delay: 0.34s; }
+.timeline-item:nth-child(3).animate-in .tech-tag:nth-child(6) { transition-delay: 0.36s; }
+.timeline-item:nth-child(3).animate-in .tech-tag:nth-child(7) { transition-delay: 0.38s; }
+.timeline-item:nth-child(3).animate-in .tech-tag:nth-child(8) { transition-delay: 0.4s; }
+.timeline-item:nth-child(3).animate-in .tech-tag:nth-child(9) { transition-delay: 0.42s; }
+.timeline-item:nth-child(3).animate-in .tech-tag:nth-child(10) { transition-delay: 0.44s; }
 
 /* Mobile-First Work Experience Redesign */
 
@@ -184,7 +391,7 @@
   }
   
   .timeline::before {
-    display: none; /* Remove timeline line on mobile */
+    display: none;
   }
   
   .timeline-item {
@@ -195,7 +402,7 @@
   }
   
   .timeline-marker {
-    display: none; /* Remove timeline markers on mobile */
+    display: none;
   }
   
   .timeline-content {

@@ -7,6 +7,7 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { initGA, logPageView } from './utils/analytics';
+import { initScrollAnimations } from './utils/scrollAnimations';
 import './App.css';
 
 function App() {
@@ -18,6 +19,14 @@ function App() {
     document.documentElement.setAttribute('data-theme', savedTheme);
     initGA();
     logPageView();
+    
+    // Initialize scroll animations
+    const cleanupAnimations = initScrollAnimations();
+    
+    // Cleanup function
+    return () => {
+      if (cleanupAnimations) cleanupAnimations();
+    };
   }, []);
 
   const toggleTheme = () => {
@@ -49,7 +58,12 @@ function App() {
       </main>
       <Footer />
       <button className="theme-toggle" onClick={toggleTheme}>
-        <span>{theme === 'light' ? '🌙' : '☀️'}</span>
+        <div className="toggle-slider">
+          <div className="toggle-knob">
+            <span className="toggle-icon-sun">☀️</span>
+            <span className="toggle-icon-moon">🌙</span>
+          </div>
+        </div>
       </button>
     </div>
   );
