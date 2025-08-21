@@ -58,19 +58,13 @@ function App() {
       </main>
       <Footer />
       <button 
-        className="theme-toggle" 
+        className="theme-button" 
         onClick={toggleTheme}
         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
         title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-        role="switch"
-        aria-checked={theme === 'dark'}
       >
-        <div className="toggle-slider">
-          <div className="toggle-knob">
-            <span className="toggle-icon-sun" aria-hidden="true">☀️</span>
-            <span className="toggle-icon-moon" aria-hidden="true">🌙</span>
-          </div>
-        </div>
+        <span className="theme-icon">{theme === 'light' ? '🌙' : '☀️'}</span>
+        <span className="theme-text">{theme === 'light' ? 'Dark' : 'Light'}</span>
       </button>
     </div>
   );
