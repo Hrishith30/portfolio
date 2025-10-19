@@ -127,7 +127,7 @@ const Contact = () => {
     // Get the API URL based on environment
     const API_URL = process.env.NODE_ENV === 'development' 
       ? 'http://localhost:5000'
-      : 'https://email-api-mw5n.onrender.com';
+      : 'https://email-api-two-ebon.vercel.app/';
 
     try {
       const selectedCountry = countriesList.find(c => c.code === formData.countryCode);
