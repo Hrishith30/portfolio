@@ -127,7 +127,7 @@ const Contact = () => {
     // Get the API URL based on environment
     const API_URL = process.env.NODE_ENV === 'development' 
       ? 'http://localhost:5000'
-      : 'https://email-api-yioz.onrender.com';
+      : 'https://email-api-iahy.onrender.com';
 
     try {
       const selectedCountry = countriesList.find(c => c.code === formData.countryCode);
