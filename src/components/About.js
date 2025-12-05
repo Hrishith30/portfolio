@@ -39,10 +39,10 @@ const About = () => {
       credentialId: 'UC-da7871df-dca5-463b-8b4e-9d83f670612e'
     },
     {
-      title: 'Full Stack Developer',
-      issuer: 'Raise Digital',
-      date: 'Dec 2022',
-      credentialId: 'UC-da7871df-dca5-463b-8b4e-9d83f670612e'
+      title: 'React Native Developer',
+      issuer: 'Udemy',
+      date: 'Nov 2025',
+      credentialId: 'UC-c6fc19ee-191a-42d5-aabf-524a8b73073e'
     },
     {
       title: 'Advanced Cybersecurity',
